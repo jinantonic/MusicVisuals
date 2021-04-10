@@ -1,8 +1,8 @@
 # Music Visualiser Project
 
-Name:
+Name: Jina Park
 
-Student Number: 
+Student Number: D19123917
 
 ## Instructions
 - Fork this repository and use it a starter project for your assignment
