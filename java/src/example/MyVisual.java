@@ -2,6 +2,7 @@ package example;
 
 import ie.tudublin.*;
 
+
 public class MyVisual extends Visual
 {    
     WaveForm wf;
@@ -61,5 +62,8 @@ public class MyVisual extends Visual
         calculateAverageAmplitude();        
         wf.render();
         abv.render();
+    }
+
+    public void noStroke() {
     }
 }

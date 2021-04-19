@@ -15,6 +15,7 @@ public class CubeVisual1 extends Visual
         startMinim();
         //startListening();
         loadAudio("heroplanet.mp3");
+        surface.setResizable(true);
         colorMode(HSB);
     }
 

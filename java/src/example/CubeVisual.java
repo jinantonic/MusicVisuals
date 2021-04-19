@@ -32,7 +32,7 @@ public class CubeVisual extends Visual
     {
         colorMode(HSB);
         noCursor();
-        
+        surface.setResizable(true);
         setFrameSize(256);
 
         startMinim();

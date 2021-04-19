@@ -1,8 +1,10 @@
 package ie.tudublin;
 
+
 import processing.core.PApplet;
 import ddf.minim.*;
 import ddf.minim.analysis.FFT;
+
 
 public abstract class Visual extends PApplet
 {
@@ -21,7 +23,7 @@ public abstract class Visual extends PApplet
 	private float amplitude  = 0;
 	private float smothedAmplitude = 0;
 
-	
+	//private float[] lerpedBuffer; // Make an array of the same size of the buffers
 	
 	public void startMinim() 
 	{
@@ -82,13 +84,13 @@ public abstract class Visual extends PApplet
 	public void startListening()
 	{
 		ai = minim.getLineIn(Minim.MONO, width, 44100, 16);
-		ab = ai.left;
+		ab = ai.mix;
 	}
 
 	public void loadAudio(String filename)
 	{
 		ap = minim.loadFile(filename, frameSize);
-		ab = ap.left;
+		ab = ap.mix;
 	}
 
 	public int getFrameSize() {
@@ -138,5 +140,37 @@ public abstract class Visual extends PApplet
 
 	public AudioPlayer getAudioPlayer() {
 		return ap;
+	}
+
+	public AudioInput getAi() {
+		return ai;
+	}
+
+	public void setAi(AudioInput ai) {
+		this.ai = ai;
+	}
+
+	public AudioPlayer getAp() {
+		return ap;
+	}
+
+	public void setAp(AudioPlayer ap) {
+		this.ap = ap;
+	}
+
+	public AudioBuffer getAb() {
+		return ab;
+	}
+
+	public void setAb(AudioBuffer ab) {
+		this.ab = ab;
+	}
+
+	public FFT getFft() {
+		return fft;
+	}
+
+	public void setFft(FFT fft) {
+		this.fft = fft;
 	}
 }
