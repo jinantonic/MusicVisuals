@@ -42,7 +42,7 @@ public class JinasVisual extends Visual
         }
     }
 
-    float lerpedAverage = 0;
+    float la = 0;
 
     public void draw()
     {   
@@ -52,8 +52,8 @@ public class JinasVisual extends Visual
         float average = 0;
         float sum = 0;
 
-        float halfW = width / 2;
-        float halfH = height / 2;
+        float hw = width / 2; // Half width
+        float hh = height / 2; // Half height 
 
         // Iterate over all the elementsthe audio buffer
         for(int i = 0; i < getAb().size(); i++) // ab is an array list of audio buffer so ab.size() gives us the size of array buffer
@@ -62,7 +62,7 @@ public class JinasVisual extends Visual
         }
         
         average = sum / (float) getAb().size();
-        lerpedAverage = lerp(lerpedAverage, average, 0.1f);
+        la = lerp(la, average, 0.1f); // Lerped average
 
         switch(which)
         {
@@ -71,29 +71,39 @@ public class JinasVisual extends Visual
                 float c = map(average, 0, 1, 0, 255);
                 
                 noStroke(); 
+
                 
-                fill(c, 255, 255); // Elmo arms
-                rect(halfW - 200, halfH - 55, 400 + (lerpedAverage * 500), 70 + (lerpedAverage * 500), 18);
+                pushMatrix();
+                fill(c, 255, 255); // Elmo right arm
+                //translate(hw + 100, hh - 200);
+                rotate(-40);
+                rect(hw - 200, hh - 55, 400 + (la * 500), 70 + (la * 500), 18);
+                popMatrix();
+
+                //pushMatrix();
+                //rect(hw, hh - 55, 400 + (la * 500), 70 + (la * 500), 18); // Elmo left arm 
+                //translate(hw - 400, hh - 55);
+                //popMatrix();
 
                 fill(c, 255, 255); // Elmo upper body
-                arc(halfW, halfH + 250, 300 + (lerpedAverage * 500), 700 + (lerpedAverage * 500), PI, TWO_PI);
+                arc(hw, hh + 250, 300 + (la * 500), 700 + (la * 500), PI, TWO_PI);
 
                 fill(c, 255, 255); // Elmo face    
-                ellipse(halfW, halfH - 200, 300 + (lerpedAverage * 500), 300 + (lerpedAverage * 500));                
+                ellipse(hw, hh - 200, 300 + (la * 500), 300 + (la * 500));                
 
                 fill(255); // Elmo eye balls
-                ellipse(halfW - 50, halfH - 350, 80 + (lerpedAverage * 500), 80 + (lerpedAverage * 500)); 
-                ellipse(halfW + 50, halfH - 350, 80 + (lerpedAverage * 500), 80 + (lerpedAverage * 500));
+                ellipse(hw - 50, hh - 350, 80 + (la * 500), 80 + (la * 500)); 
+                ellipse(hw + 50, hh - 350, 80 + (la * 500), 80 + (la * 500));
 
                 fill(0); // Elmo pupils
-                ellipse(halfW - 50, halfH - 350, 20 + (lerpedAverage * 500), 20 + (lerpedAverage * 500));
-                ellipse(halfW + 50, halfH - 350, 20 + (lerpedAverage * 500), 20 + (lerpedAverage * 500));
+                ellipse(hw - 50, hh - 350, 20 + (la * 500), 20 + (la * 500));
+                ellipse(hw + 50, hh - 350, 20 + (la * 500), 20 + (la * 500));
 
                 fill(33,363,234); // Elmo nose
-                ellipse(halfW, halfH - 300, 70 + (lerpedAverage * 500), 90 + (lerpedAverage * 500)); 
+                ellipse(hw, hh - 300, 70 + (la * 500), 90 + (la * 500)); 
 
                 fill(0); // Elmo mouth
-                arc(halfW, halfH - 180, 250 + (lerpedAverage * 500), 220 + (lerpedAverage * 500), 0, PI); 
+                arc(hw, hh - 180, 250 + (la * 500), 220 + (la * 500), 0, PI); 
                 /*quad(halfW - 40, halfH - 80, halfW - 80, halfH, halfW / 2, halfH, halfW / 2, halfH - 80); // Left arm
                 quad(halfW + 40, halfH - 80, halfW + 80, halfH, halfW / 2, halfH, halfW + (halfW / 2), halfH - 80); // Right arm*/
 
