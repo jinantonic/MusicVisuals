@@ -2,9 +2,9 @@ package D19123917;
 
 import ie.tudublin.*;
 
-public class JinasVisual extends Visual
+public class Elmo extends Visual
 {
-    Plmage[] photos = new Plmage[4];
+
     
     public void settings()
     {
@@ -73,7 +73,40 @@ public class JinasVisual extends Visual
                 noStroke(); 
 
                 
-                
+                pushMatrix();
+                fill(c, 255, 255); // Elmo right arm
+                //translate(hw + 100, hh - 200);
+                rotate(-40);
+                rect(hw - 200, hh - 55, 400 + (la * 500), 70 + (la * 500), 18);
+                popMatrix();
+
+                //pushMatrix();
+                //rect(hw, hh - 55, 400 + (la * 500), 70 + (la * 500), 18); // Elmo left arm 
+                //translate(hw - 400, hh - 55);
+                //popMatrix();
+
+                fill(c, 255, 255); // Elmo upper body
+                arc(hw, hh + 250, 300 + (la * 500), 700 + (la * 500), PI, TWO_PI);
+
+                fill(c, 255, 255); // Elmo face    
+                ellipse(hw, hh - 200, 300 + (la * 500), 300 + (la * 500));                
+
+                fill(255); // Elmo eye balls
+                ellipse(hw - 50, hh - 350, 80 + (la * 500), 80 + (la * 500)); 
+                ellipse(hw + 50, hh - 350, 80 + (la * 500), 80 + (la * 500));
+
+                fill(0); // Elmo pupils
+                ellipse(hw - 50, hh - 350, 20 + (la * 500), 20 + (la * 500));
+                ellipse(hw + 50, hh - 350, 20 + (la * 500), 20 + (la * 500));
+
+                fill(33,363,234); // Elmo nose
+                ellipse(hw, hh - 300, 70 + (la * 500), 90 + (la * 500)); 
+
+                fill(0); // Elmo mouth
+                arc(hw, hh - 180, 250 + (la * 500), 220 + (la * 500), 0, PI); 
+                /*quad(halfW - 40, halfH - 80, halfW - 80, halfH, halfW / 2, halfH, halfW / 2, halfH - 80); // Left arm
+                quad(halfW + 40, halfH - 80, halfW + 80, halfH, halfW / 2, halfH, halfW + (halfW / 2), halfH - 80); // Right arm*/
+
                 
                 
                 
