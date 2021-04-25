@@ -1,10 +1,11 @@
 package D19123917;
 
 import ie.tudublin.*;
+import processing.core.PImage;
 
 public class JinasVisual extends Visual
 {
-    Plmage[] photos = new Plmage[4];
+    PImage[] images = new PImage[4];
     
     public void settings()
     {
@@ -14,11 +15,22 @@ public class JinasVisual extends Visual
 
     public void setup()
     {
+
+        images[0] = loadImage("0.png");
+        images[1] = loadImage("1.png");
+        images[2] = loadImage("2.png");
+        images[3] = loadImage("3.png");
+
         startMinim();
         surface.setResizable(true);
         loadAudio("POPSTAR.mp3");
         getAudioPlayer().play();
         colorMode(HSB);
+
+        
+
+
+        
     }
 
     int which = 0;
@@ -46,14 +58,9 @@ public class JinasVisual extends Visual
 
     public void draw()
     {   
-        background(0);
-        stroke(255);
 
         float average = 0;
         float sum = 0;
-
-        float hw = width / 2; // Half width
-        float hh = height / 2; // Half height 
 
         // Iterate over all the elementsthe audio buffer
         for(int i = 0; i < getAb().size(); i++) // ab is an array list of audio buffer so ab.size() gives us the size of array buffer
@@ -68,9 +75,13 @@ public class JinasVisual extends Visual
         {
             case 0: 
             {
-                float c = map(average, 0, 1, 0, 255);
-                
-                noStroke(); 
+                //float c = map(average, 0, 1, 0, 255);
+                int s = mouseX / 5 + 1;
+                frameRate(s);
+                background(255);
+
+                int num = frameCount % 4;
+                image(images[num], 0, 0);
 
                 
                 
