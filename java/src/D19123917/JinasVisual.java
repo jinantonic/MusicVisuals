@@ -1,36 +1,29 @@
 package D19123917;
 
 import ie.tudublin.*;
-import processing.core.PImage;
+
 
 public class JinasVisual extends Visual
 {
-    PImage[] images = new PImage[4];
+    Star [] stars = new Star[100];
     
     public void settings()
     {
-        //size(512, 512, P3D);
-        size(800, 800, P3D);
+        //size(800, 800, P3D);
+        size(400, 400);
+        for(int i = 0; i < stars.length; i++)
+        {
+            stars[i] = new Star();
+        }
     }   
 
     public void setup()
     {
-
-        images[0] = loadImage("0.png");
-        images[1] = loadImage("1.png");
-        images[2] = loadImage("2.png");
-        images[3] = loadImage("3.png");
-
         startMinim();
         surface.setResizable(true);
         loadAudio("POPSTAR.mp3");
         getAudioPlayer().play();
         colorMode(HSB);
-
-        
-
-
-        
     }
 
     int which = 0;
@@ -58,7 +51,6 @@ public class JinasVisual extends Visual
 
     public void draw()
     {   
-
         float average = 0;
         float sum = 0;
 
@@ -75,13 +67,14 @@ public class JinasVisual extends Visual
         {
             case 0: 
             {
+                background(0);
                 //float c = map(average, 0, 1, 0, 255);
-                int s = mouseX / 5 + 1;
-                frameRate(s);
-                background(255);
-
-                int num = frameCount % 4;
-                image(images[num], 0, 0);
+                for(int i = 0; i < stars.length; i++)
+                {
+                    stars[i].update();
+                    stars[i].show();
+                }
+            
 
                 
                 

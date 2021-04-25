@@ -1,6 +1,6 @@
 package ie.tudublin;
 
-public class VisualExceptionElmo extends Throwable
+public class VisualException extends Throwable
 {
     /**
      *
