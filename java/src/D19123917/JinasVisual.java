@@ -1,12 +1,14 @@
 package D19123917;
 
 import ie.tudublin.*;
+import processing.core.PImage;
 
 
 public class JinasVisual extends Visual
 {
     Star [] stars = new Star[800]; // Create an array named stars
-    
+    PImage [] images = new PImage[4];
+
     float speed;
 
     public void settings()
@@ -26,6 +28,11 @@ public class JinasVisual extends Visual
         loadAudio("POPSTAR.mp3");
         getAudioPlayer().play();
         colorMode(HSB);
+
+        images[0] = loadImage("25.png");
+        images[1] = loadImage("26.png");
+        images[2] = loadImage("27.png");
+        images[3] = loadImage("28.png");
     }
 
     int which = 0;
@@ -88,40 +95,37 @@ public class JinasVisual extends Visual
                 //i++;
                 pushMatrix();
                 fill(c, 255, 255); // Elmo left arm
-                translate(hw - 50, hh + 40);
+                translate(hw - 50, hh + 200);
                 //rotate(i);
                 rotate(10);
-                rect(0, 0, 400 + (la * 500), 70 + (la * 500), 50);
+                rect(0, 0, 300 + (la * 500), 70 + (la * 500), 50);
                 popMatrix();
 
                 pushMatrix();
-                translate(hw, hh - 20);
+                translate(hw, hh + 140);
                 rotate(100);
-                rect(0, 0, 400 + (la * 500), 70 + (la * 500), 50); // Elmo right arm 
+                rect(0, 0, 300 + (la * 500), 70 + (la * 500), 50); // Elmo right arm 
                 popMatrix();
 
                 fill(c, 255, 255); // Elmo upper body
-                arc(hw, hh + 250, 300 + (la * 500), 700 + (la * 500), PI, TWO_PI);
+                arc(hw, hh + 400, 300 + (la * 500), 600 + (la * 500), PI, TWO_PI);
 
                 fill(c, 255, 255); // Elmo face    
-                ellipse(hw, hh - 200, 300 + (la * 500), 300 + (la * 500));                
+                ellipse(hw, hh - 35, 300 + (la * 500), 300 + (la * 500));                
 
                 fill(255); // Elmo eye balls
-                ellipse(hw - 50, hh - 350, 80 + (la * 500), 80 + (la * 500)); 
-                ellipse(hw + 50, hh - 350, 80 + (la * 500), 80 + (la * 500));
+                ellipse(hw - 50, hh - 200, 80 + (la * 500), 80 + (la * 500)); 
+                ellipse(hw + 50, hh - 200, 80 + (la * 500), 80 + (la * 500));
 
                 fill(0); // Elmo pupils
-                ellipse(hw - 50, hh - 350, 20 + (la * 500), 20 + (la * 500));
-                ellipse(hw + 50, hh - 350, 20 + (la * 500), 20 + (la * 500));
+                ellipse(hw - 50, hh - 200, 20 + (la * 500), 20 + (la * 500));
+                ellipse(hw + 50, hh - 200, 20 + (la * 500), 20 + (la * 500));
 
                 fill(33,363,234); // Elmo nose
-                ellipse(hw, hh - 300, 70 + (la * 500), 90 + (la * 500)); 
+                ellipse(hw, hh - 150, 70 + (la * 500), 90 + (la * 500)); 
 
                 fill(0); // Elmo mouth
-                arc(hw, hh - 180, 250 + (la * 500), 220 + (la * 500), 0, PI); 
-                /*quad(halfW - 40, halfH - 80, halfW - 80, halfH, halfW / 2, halfH, halfW / 2, halfH - 80); // Left arm
-                quad(halfW + 40, halfH - 80, halfW + 80, halfH, halfW / 2, halfH, halfW + (halfW / 2), halfH - 80); // Right arm*/
-                
+                arc(hw, hh - 30, 250 + (la * 500), 220 + (la * 500), 0, PI); 
                 
                 break;
             }
