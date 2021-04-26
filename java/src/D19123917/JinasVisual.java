@@ -5,15 +5,17 @@ import ie.tudublin.*;
 
 public class JinasVisual extends Visual
 {
-    Star [] stars = new Star[100];
+    Star [] stars = new Star[800]; // Create an array named stars
     
+    float speed;
+
     public void settings()
     {
-        //size(800, 800, P3D);
-        size(400, 400);
+        size(800, 800, P3D);
+        //size(400, 400);
         for(int i = 0; i < stars.length; i++)
         {
-            stars[i] = new Star();
+            stars[i] = new Star(this);
         }
     }   
 
@@ -54,6 +56,9 @@ public class JinasVisual extends Visual
         float average = 0;
         float sum = 0;
 
+        float hw = width / 2; // Half width
+        float hh = height / 2; // Half height
+
         // Iterate over all the elementsthe audio buffer
         for(int i = 0; i < getAb().size(); i++) // ab is an array list of audio buffer so ab.size() gives us the size of array buffer
         {
@@ -67,20 +72,55 @@ public class JinasVisual extends Visual
         {
             case 0: 
             {
+                speed = map(mouseX, 0, width, 0, 20);
                 background(0);
+                //translate(hw, hh);
                 //float c = map(average, 0, 1, 0, 255);
                 for(int i = 0; i < stars.length; i++)
                 {
                     stars[i].update();
                     stars[i].show();
                 }
-            
 
-                
-                
-                
-                
-                
+                float c = map(average, 0, 1, 0, 255);
+                noStroke(); 
+
+                //i++;
+                pushMatrix();
+                fill(c, 255, 255); // Elmo left arm
+                translate(hw - 50, hh + 40);
+                //rotate(i);
+                rotate(10);
+                rect(0, 0, 400 + (la * 500), 70 + (la * 500), 50);
+                popMatrix();
+
+                pushMatrix();
+                translate(hw, hh - 20);
+                rotate(100);
+                rect(0, 0, 400 + (la * 500), 70 + (la * 500), 50); // Elmo right arm 
+                popMatrix();
+
+                fill(c, 255, 255); // Elmo upper body
+                arc(hw, hh + 250, 300 + (la * 500), 700 + (la * 500), PI, TWO_PI);
+
+                fill(c, 255, 255); // Elmo face    
+                ellipse(hw, hh - 200, 300 + (la * 500), 300 + (la * 500));                
+
+                fill(255); // Elmo eye balls
+                ellipse(hw - 50, hh - 350, 80 + (la * 500), 80 + (la * 500)); 
+                ellipse(hw + 50, hh - 350, 80 + (la * 500), 80 + (la * 500));
+
+                fill(0); // Elmo pupils
+                ellipse(hw - 50, hh - 350, 20 + (la * 500), 20 + (la * 500));
+                ellipse(hw + 50, hh - 350, 20 + (la * 500), 20 + (la * 500));
+
+                fill(33,363,234); // Elmo nose
+                ellipse(hw, hh - 300, 70 + (la * 500), 90 + (la * 500)); 
+
+                fill(0); // Elmo mouth
+                arc(hw, hh - 180, 250 + (la * 500), 220 + (la * 500), 0, PI); 
+                /*quad(halfW - 40, halfH - 80, halfW - 80, halfH, halfW / 2, halfH, halfW / 2, halfH - 80); // Left arm
+                quad(halfW + 40, halfH - 80, halfW + 80, halfH, halfW / 2, halfH, halfW + (halfW / 2), halfH - 80); // Right arm*/
                 
                 
                 break;

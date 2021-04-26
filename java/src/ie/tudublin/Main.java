@@ -1,5 +1,6 @@
 package ie.tudublin;
 
+import D19123917.Elmo;
 import D19123917.JinasVisual;
 
 
@@ -12,14 +13,18 @@ public class Main
         processing.core.PApplet.runSketch(a, new JinasVisual());		
 	}
 
-	public void test()
+	public void elmo()
 	{
-		System.out.println("Gay");
+		String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch(a, new Elmo());		
 	}
+
+
 
 	public static void main(String[] args)
 	{
 		Main main = new Main();   
-		main.startUI();			
+		main.startUI();	
+		//main.elmo();		
 	}
 }

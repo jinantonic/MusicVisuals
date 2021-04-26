@@ -4,7 +4,7 @@ import ie.tudublin.*;
 
 public class Elmo extends Visual
 {
-
+    float i = 0;
     
     public void settings()
     {
@@ -72,18 +72,20 @@ public class Elmo extends Visual
                 
                 noStroke(); 
 
-                
+                //i++;
                 pushMatrix();
-                fill(c, 255, 255); // Elmo right arm
-                //translate(hw + 100, hh - 200);
-                rotate(-40);
-                rect(hw - 200, hh - 55, 400 + (la * 500), 70 + (la * 500), 18);
+                fill(c, 255, 255); // Elmo left arm
+                translate(hw - 50, hh + 40);
+                //rotate(i);
+                rotate(10);
+                rect(0, 0, 400 + (la * 500), 70 + (la * 500), 50);
                 popMatrix();
 
-                //pushMatrix();
-                //rect(hw, hh - 55, 400 + (la * 500), 70 + (la * 500), 18); // Elmo left arm 
-                //translate(hw - 400, hh - 55);
-                //popMatrix();
+                pushMatrix();
+                translate(hw, hh - 20);
+                rotate(100);
+                rect(0, 0, 400 + (la * 500), 70 + (la * 500), 50); // Elmo right arm 
+                popMatrix();
 
                 fill(c, 255, 255); // Elmo upper body
                 arc(hw, hh + 250, 300 + (la * 500), 700 + (la * 500), PI, TWO_PI);

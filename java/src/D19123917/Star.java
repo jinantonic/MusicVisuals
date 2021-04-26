@@ -1,30 +1,57 @@
 package D19123917;
 
-public class Star extends JinasVisual
+public class Star
 {
-    float x, y, z;
+    JinasVisual jv;
+
+    float x, y, z, pz;
+
+    
+    public Star(JinasVisual jv) {
+        this.jv = jv;
+    }
 
     public Star()
     {
-        x = random(0, width);
-        y = random(0, height);
-        z = random(0, width);
+        /*x = jv.random(-jv.hw, jv.hw);
+        y = jv.random(-jv.hh, jv.hh);
+        z = jv.random(jv.hw);
+        pz = z;*/
+        x = jv.random(-jv.width, jv.width);
+        y = jv.random(-jv.height, jv.height);
+        z = jv.random(jv.width);
+
     }
 
     public void update()
     {
-        z = z - 1;
+        z = z - jv.speed;
+        if(z < 1)
+        {
+            z = jv.random(jv.width);
+            x = jv.random(-jv.width, jv.width);
+            y = jv.random(-jv.height, jv.height);
+            pz = z;
+        }
     }
 
     public void show()
     {
-        fill(255);
-        noStroke();
+        jv.fill(255);
+        jv.noStroke();
 
-        float sx = map(x / 2, 0, 1, 0, width);
-        float sy = map(y / 2, 0, 1, 0, height);
+        float sx = JinasVisual.map(x / z, 0, 1, 0, jv.width);
+        float sy = JinasVisual.map(y / z, 0, 1, 0, jv.height);
 
-        ellipse(sx, sy, 8, 8);
+        float r = JinasVisual.map(z, 0, jv.width, 16, 0);
+
+        jv.ellipse(sx, sy, r, r);
+
+        float px = JinasVisual.map(x / pz, 0, 1, 0, jv.width);
+        float py = JinasVisual.map(y / pz, 0, 1, 0, jv.height);
+
+        jv.stroke(255);
+        jv.line(px, py, sx, sy);
     }
 
 }
