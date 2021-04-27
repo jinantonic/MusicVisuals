@@ -19,6 +19,7 @@ public class JinasVisual extends Visual
         {
             stars[i] = new Star(this);
         }
+
     }   
 
     public void setup()
@@ -29,10 +30,14 @@ public class JinasVisual extends Visual
         getAudioPlayer().play();
         colorMode(HSB);
 
-        images[0] = loadImage("25.png");
-        images[1] = loadImage("26.png");
-        images[2] = loadImage("27.png");
-        images[3] = loadImage("28.png");
+        images[0] = loadImage("10.png");
+        images[1] = loadImage("11.png");
+        images[2] = loadImage("12.png");
+        images[3] = loadImage("13.png");
+        //images[4] = loadImage("15.png");
+        //images[5] = loadImage("13.png");
+
+        
     }
 
     int which = 0;
@@ -131,7 +136,12 @@ public class JinasVisual extends Visual
             }
             case 1:
             {
-            
+                int s = mouseX / 5 + 1;
+                frameRate(s);
+                background(255);
+                int imageNum = frameCount % 4;
+                image(images[imageNum], 0, 0);
+                break;
             }
             case 2:
             {
