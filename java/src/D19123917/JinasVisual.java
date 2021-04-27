@@ -7,7 +7,7 @@ import processing.core.PImage;
 public class JinasVisual extends Visual
 {
     Star [] stars = new Star[800]; // Create an array named stars
-    PImage [] images = new PImage[4];
+    PImage [] images = new PImage[7];
 
     float speed;
 
@@ -30,12 +30,12 @@ public class JinasVisual extends Visual
         getAudioPlayer().play();
         colorMode(HSB);
 
-        images[0] = loadImage("10.png");
-        images[1] = loadImage("11.png");
-        images[2] = loadImage("12.png");
-        images[3] = loadImage("13.png");
-        //images[4] = loadImage("15.png");
-        //images[5] = loadImage("13.png");
+        images[0] = loadImage("1.png");
+        images[1] = loadImage("2.png");
+        images[2] = loadImage("3.png");
+        images[3] = loadImage("4.png");
+        images[4] = loadImage("5.png");
+        images[5] = loadImage("6.png");
 
         
     }
