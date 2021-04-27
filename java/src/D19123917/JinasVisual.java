@@ -8,7 +8,6 @@ public class JinasVisual extends Visual
 {
     Star [] stars = new Star[800]; // Create an array named stars
     PImage [] images = new PImage[7];
-    Circle [] circles = new Circle[10];
 
     float speed;
 
@@ -35,11 +34,7 @@ public class JinasVisual extends Visual
         rows = h/ scl;
         terrain = new float[cols][rows];
 
-        for(int i = 0; i < circles.length; i++)
-        {
-            circles[i] = new Circle(this);
-          }
-
+        
     }   
 
     public void setup()
@@ -291,16 +286,32 @@ public class JinasVisual extends Visual
                 line(210, 280, 230, 270);
                 popMatrix();
 
-                
+                break;
             }
             case 4:
             {
-                frameRate(60);
-                noStroke();
-                float c = map(average, 0, 1, 0, 255);
-                fill(c, 255, 255);
-
-
+                float r = 1f; // radius
+                int numPoints = 3; // no. of points that we are gonna calculate on the outside of a spiral
+                float thetaInc = TWO_PI / (float)numPoints;
+                strokeWeight(2);
+                stroke(255);
+                float lastX = width / 2; 
+                float lastY = height / 2;
+                for(int i = 0; i < 1000; i++) // Calculate 1000 points on the outside of a spiral -> doing that for 1000 times
+                {
+                    float c = map(i, 0, 300, 0, 255) % 255.0f;
+                    stroke(c, 255, 255, 100);
+                    float theta = i * (thetaInc + la * 5);
+                    float x = width / 2 + sin(theta) * r; // Calculating the points on the outside of the circle 
+                    float y = height / 2 - cos(theta) * r;
+                    r += 0.5f + la; // Increase the radius by some small amount
+                    numPoints++;
+                    //point(x, y);
+                    line(lastX, lastY, x, y); // Drawing a line from previously calculated to the current calculated point
+                    lastX = x;
+                    lastY = y;
+                }
+                break;
             }
             case 5:
             {
