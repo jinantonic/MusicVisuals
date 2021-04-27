@@ -139,7 +139,8 @@ public class JinasVisual extends Visual
                 int s = mouseX / 5 + 1;
                 frameRate(s);
                 background(255);
-                int imageNum = frameCount % 4;
+                int imageNum = frameCount % 6;
+                translate(hw, hh);
                 image(images[imageNum], 0, 0);
                 break;
             }
