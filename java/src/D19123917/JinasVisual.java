@@ -53,6 +53,31 @@ public class JinasVisual extends Visual
         
     }
 
+    public void mousePressed(){
+        startMinim();
+        getAudioPlayer().play();
+        
+         pushMatrix();
+         translate(120,200);
+         rotate(radians(200));
+         stroke(0);
+       
+         fill(255);
+         ellipse(0,0,20,10);
+       ellipse(0,20,20,10);
+       
+         ellipse(30,0,20,10);
+       ellipse(30,20,20,10);
+       
+         ellipse(60,0,20,10);
+       ellipse(60,20,20,10);
+       
+         popMatrix();
+       
+       
+         
+       }
+       
     int which = 0;
     public void keyPressed()
     {
@@ -150,6 +175,7 @@ public class JinasVisual extends Visual
             case 1:
             {
                 
+                
                 flying -= 0.1;
 
                 float yoff = flying;
@@ -187,17 +213,87 @@ public class JinasVisual extends Visual
                 frameRate(s);
                 background(255);
                 int imageNum = frameCount % 6;
-                translate(hw, hh);
+                //translate(hw, hh);
                 image(images[imageNum], 0, 0);
+                
                 break;
             }
             case 3:
             {
-            
+                background(255);
+                noStroke();
+                
+                //body
+                    fill(0,216,255);
+                ellipse(250,390,180,200);
+                
+                //head
+                fill(0,216,255);
+                ellipse(250,250,150,160);
+                
+                //eye
+                fill(0);
+                ellipse(200,220,5,5);
+                ellipse(300,220,5,5);
+                
+                //nnnooo
+
+                
+                pushMatrix();
+                translate(240,260);
+                rotate(radians(60));
+                //stroke(200);
+                
+                fill(255);
+                ellipse(0,0,30,40);
+                popMatrix();
+                
+                pushMatrix();
+                translate(260,260);
+                rotate(radians(120));
+                // stroke(200);
+                
+                fill(255);
+                ellipse(0,0,30,40);
+                popMatrix();
+                
+                //noStroke();
+                fill(255);
+                ellipse(250,260,30,10);
+                
+                //nose
+                noStroke();
+                fill(0);
+                ellipse(250,250,22,22);
+                
+                //f
+                stroke(0);
+                fill(255,0,0);
+                line(210, 255, 230, 260);
+                line(230, 265, 200, 270);
+                line(210, 280, 230, 270);
+                
+                pushMatrix();
+                translate(390,590);
+                rotate(radians(200));
+                stroke(0);
+                
+                fill(255,0,0);
+                line(210, 255, 230, 260);
+                line(230, 265, 200, 270);
+                line(210, 280, 230, 270);
+                popMatrix();
+
+                
             }
             case 4:
             {
-            
+                frameRate(60);
+                noStroke();
+                float c = map(average, 0, 1, 0, 255);
+                fill(c, 255, 255);
+
+
             }
             case 5:
             {
