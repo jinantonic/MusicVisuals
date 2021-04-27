@@ -8,6 +8,7 @@ public class JinasVisual extends Visual
 {
     Star [] stars = new Star[800]; // Create an array named stars
     PImage [] images = new PImage[7];
+    Circle [] circles = new Circle[10];
 
     float speed;
 
@@ -33,6 +34,12 @@ public class JinasVisual extends Visual
         cols = w / scl;
         rows = h/ scl;
         terrain = new float[cols][rows];
+
+        for(int i = 0; i < circles.length; i++)
+        {
+            circles[i] = new Circle(this);
+          }
+
     }   
 
     public void setup()
@@ -297,7 +304,7 @@ public class JinasVisual extends Visual
             }
             case 5:
             {
-            
+                
             }
         }
     }
