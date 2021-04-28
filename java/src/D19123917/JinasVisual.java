@@ -10,6 +10,7 @@ public class JinasVisual extends Visual
     PImage [] images = new PImage[7];
     Monster m;
 
+    float average;
     float hh, hw;
     float speed;
 
@@ -48,7 +49,7 @@ public class JinasVisual extends Visual
         getAudioPlayer().play();
         colorMode(HSB);
 
-        m = new Monster(this, hw, hh, 0, 0);
+        m = new Monster(this, hw, hh, color(0, 100, 100), 0.5f);
 
         images[0] = loadImage("1.png");
         images[1] = loadImage("2.png");
@@ -108,7 +109,7 @@ public class JinasVisual extends Visual
 
     public void draw()
     {   
-        float average = 0;
+        
         float sum = 0;
 
         // Iterate over all the elementsthe audio buffer
@@ -126,8 +127,7 @@ public class JinasVisual extends Visual
             {
                 speed = map(mouseX, 0, width, 0, 20);
                 background(0);
-                //translate(hw, hh);
-                //float c = map(average, 0, 1, 0, 255);
+               
                 for(int i = 0; i < stars.length; i++)
                 {
                     stars[i].update();
@@ -135,6 +135,9 @@ public class JinasVisual extends Visual
                 }
 
                 float c = map(average, 0, 1, 0, 255);
+                m.render();
+                m.update();
+
                 
                 break;
             }
