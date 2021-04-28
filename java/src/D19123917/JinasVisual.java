@@ -1,5 +1,6 @@
 package D19123917;
 
+import java.util.ArrayList;
 import ie.tudublin.*;
 import processing.core.PImage;
 
@@ -8,11 +9,14 @@ public class JinasVisual extends Visual
 {
     Star [] stars = new Star[800]; // Create an array named stars
     PImage [] images = new PImage[7];
-    Monster m;
+    ArrayList<Monster> m = new ArrayList<Monster>();
+    Monster monster;
 
     float average;
     float hh, hw;
     float speed;
+
+    Boolean paused = false;
 
     int cols, rows;
     int scl = 20;
@@ -20,14 +24,13 @@ public class JinasVisual extends Visual
     int h = 1600;
 
     float flying = 0;
-
     float[][] terrain;
 
 
     public void settings()
     {
         size(800, 800, P3D);
-        //size(400, 400);
+
         hw = width / 2; // Half width
         hh = height / 2; // Half height
 
@@ -49,7 +52,14 @@ public class JinasVisual extends Visual
         getAudioPlayer().play();
         colorMode(HSB);
 
-        m = new Monster(this, hw, hh, color(0, 100, 100), 0.5f);
+        monster = new Monster(this, hw, hh, color(0, 100, 100), 0.5f);
+        m.add(monster);
+
+        monster= new Monster(this, 200, 200, color(200, 100, 100), 0.3f);
+        m.add(monster);    
+        
+        monster= new Monster(this, 600, 300, color(200, 100, 100), 0.2f);
+        m.add(monster); 
 
         images[0] = loadImage("1.png");
         images[1] = loadImage("2.png");
@@ -85,6 +95,7 @@ public class JinasVisual extends Visual
     }
        
     int which = 0;
+
     public void keyPressed()
     {
         if(keyCode >= '0' && keyCode <= '5')
@@ -96,11 +107,13 @@ public class JinasVisual extends Visual
             if(getAp().isPlaying()) // If audioplayer is already playing
             { 
                 getAp().pause(); // Pause the audio
+                paused = true;
             }
             else
             {
                 getAp().rewind(); // Rewind
                 getAp().play(); // Play 
+                paused = false;
             }
         }
     }
@@ -109,7 +122,6 @@ public class JinasVisual extends Visual
 
     public void draw()
     {   
-        
         float sum = 0;
 
         // Iterate over all the elementsthe audio buffer
@@ -134,11 +146,14 @@ public class JinasVisual extends Visual
                     stars[i].show();
                 }
 
-                float c = map(average, 0, 1, 0, 255);
-                m.render();
-                m.update();
-
+                //float c = map(average, 0, 1, 0, 255);
                 
+                for(int i = 0; i < m.size(); i++)
+                {
+                    Monster mo = m.get(i);
+                    mo.render();
+                    mo.update();
+                }
                 break;
             }
             case 1:
@@ -146,11 +161,13 @@ public class JinasVisual extends Visual
                 flying -= 0.1;
 
                 float yoff = flying;
-                for (int y = 0; y < rows; y++) {
+                for (int y = 0; y < rows; y++)
+                {
                     float xoff = 0;
-                    for (int x = 0; x < cols; x++) {
-                    terrain[x][y] = map(noise(xoff, yoff), 0, 1, -100, 100);
-                    xoff += 0.2;
+                    for (int x = 0; x < cols; x++)
+                    {
+                        terrain[x][y] = map(noise(xoff, yoff), 0, 1, -100, 100);
+                        xoff += 0.2;
                     }
                     yoff += 0.2;
                 }
@@ -162,13 +179,15 @@ public class JinasVisual extends Visual
                 translate(width/2, height/2+50);
                 rotateX(PI/3);
                 translate(-w/2, -h/2);
-                for (int y = 0; y < rows-1; y++) {
-                  beginShape(TRIANGLE_STRIP);
-                  for (int x = 0; x < cols; x++) {
-                    vertex(x*scl, y*scl, terrain[x][y]);
-                    vertex(x*scl, (y+1)*scl, terrain[x][y+1]);
-                    //rect(x*scl, y*scl, scl, scl);
-                  }
+                for (int y = 0; y < rows-1; y++)
+                {
+                     beginShape(TRIANGLE_STRIP);
+                    for (int x = 0; x < cols; x++)
+                    {
+                        vertex(x*scl, y*scl, terrain[x][y]);
+                        vertex(x*scl, (y+1)*scl, terrain[x][y+1]);
+                        //rect(x*scl, y*scl, scl, scl);
+                    }
                   endShape();
                 }
                 break;

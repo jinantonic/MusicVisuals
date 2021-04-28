@@ -10,7 +10,7 @@ public class Monster
     float s; // scale
     float ws; // width scale
     float i = 0;
-
+    
 
     public Monster(JinasVisual jv, float x, float y, float c, float s)
     {
@@ -27,54 +27,52 @@ public class Monster
     public void update()
     {
         c = JinasVisual.map(jv.average, 0, 1, 0, 255);
-        //JinasVisual.println("WIDTH " + w);
-        //JinasVisual.println("WS " + ws);
+        if(!jv.paused)
+        {
+            if((jv.frameCount % 4) == 0)
+            {
+                i += 0.1f; // i++;
+                JinasVisual.println("VALUE " + i); 
+            }
+        }
     }
     
     public void render()
     {
-        jv.noStroke(); 
-
-        if((jv.frameCount % 8) == 0)
-        {
-            i++;
-            JinasVisual.println("VALUE " + i); 
-        }
+        jv.noStroke();
 
         jv.pushMatrix();
-        jv.fill(c, 255, 255); // Elmo left arm
-        jv.translate(x - x / 10, y + (w * 0.4f));
-        //rotate(i);
+        jv.fill(c, 255, 255); // Left arm
+        jv.translate(x - x / 15, y + (w * 0.4f));
         jv.rotate(i);
-        jv.rect(0, 0, ws + (jv.la * w), ((ws * 0.23f) + (jv.la * w)), 50);
+        jv.rect(0, 0, (ws * 1.1f) + (jv.la * w), ((ws * 0.23f) + (jv.la * w)), 50);
         jv.popMatrix();
 
         jv.pushMatrix();
-        jv.translate(x + x / 10, y + (w * 0.4f));
+        jv.translate(x + x / 15, y + (w * 0.4f));
         jv.rotate(-i);
-        jv.rect(0, 0, ws + (jv.la * w), (ws * 0.23f) + (jv.la * w), 50); // Elmo right arm 
+        jv.rect(0, 0, (ws * 1.1f) + (jv.la * w), (ws * 0.23f) + (jv.la * w), 50); // Right arm 
         jv.popMatrix();
 
-        // Elmo upper body
-        //jv.arc(x, y + (w * 0.8f), ws + (jv.la * w), (ws * 2) + (jv.la * w), JinasVisual.PI, JinasVisual.TWO_PI);
+        // Upper body
+        jv.arc(x, y + (w * 0.8f), ws + (jv.la * w), (ws * 2) + (jv.la * w), JinasVisual.PI, JinasVisual.TWO_PI);
 
-        // Elmo face    
+        // Face    
         jv.ellipse(x, y - (w * 0.07f), ws + (jv.la * w), ws + (jv.la * w));                
 
-        jv.fill(255); // Elmo eye balls
+        jv.fill(255); // Eye balls
         jv.circle(x - (w * 0.1f), y - (w * 0.4f), (int)((ws * 0.26) + (jv.la * w)));
         jv.circle(x + (w * 0.1f), y - (w * 0.4f), (int)((ws * 0.26) + (jv.la * w)));
 
-        jv.fill(0); // Elmo pupils
+        jv.fill(0); // Pupils
         jv.circle(x - (w * 0.1f), y - (w * 0.4f), (int)((ws * 0.06) + (jv.la * w)));
         jv.circle(x + (w * 0.1f), y - (w * 0.4f), (int)((ws * 0.06) + (jv.la * w)));
         
-        jv.fill(33,363,234); // Elmo nose
+        jv.fill(33,363,234); // Nose
         jv.ellipse(x, y - (w * 0.3f), (int)((ws * 0.23) + (jv.la * w)), (int)((ws * 0.3) + (jv.la * w))); 
 
-        jv.fill(0); // Elmo mouth
+        jv.fill(0); // Mouth
         jv.arc(x, y - (w * 0.06f), (int)((ws * 0.83) + (jv.la * w)), (int)((ws * 0.73) + (jv.la * w)), 0, JinasVisual.PI); 
-        
     }
 
 
