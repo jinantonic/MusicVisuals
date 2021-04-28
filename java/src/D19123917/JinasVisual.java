@@ -8,7 +8,9 @@ public class JinasVisual extends Visual
 {
     Star [] stars = new Star[800]; // Create an array named stars
     PImage [] images = new PImage[7];
+    Monster m;
 
+    float hh, hw;
     float speed;
 
     int cols, rows;
@@ -25,6 +27,9 @@ public class JinasVisual extends Visual
     {
         size(800, 800, P3D);
         //size(400, 400);
+        hw = width / 2; // Half width
+        hh = height / 2; // Half height
+
         for(int i = 0; i < stars.length; i++)
         {
             stars[i] = new Star(this);
@@ -33,8 +38,6 @@ public class JinasVisual extends Visual
         cols = w / scl;
         rows = h/ scl;
         terrain = new float[cols][rows];
-
-        
     }   
 
     public void setup()
@@ -44,6 +47,8 @@ public class JinasVisual extends Visual
         loadAudio("POPSTAR.mp3");
         getAudioPlayer().play();
         colorMode(HSB);
+
+        m = new Monster(this, hw, hh, 0, 0);
 
         images[0] = loadImage("1.png");
         images[1] = loadImage("2.png");
@@ -55,30 +60,28 @@ public class JinasVisual extends Visual
         
     }
 
-    public void mousePressed(){
+    public void mousePressed()
+    {
         startMinim();
         getAudioPlayer().play();
         
-         pushMatrix();
-         translate(120,200);
-         rotate(radians(200));
-         stroke(0);
+        pushMatrix();
+        translate(120,200);
+        rotate(radians(200));
+        stroke(255);
+        strokeWeight(4);
        
-         fill(255);
-         ellipse(0,0,20,10);
-       ellipse(0,20,20,10);
+        fill(255);
+        ellipse(0,0,20,10);
+        ellipse(0,20,20,10);
        
-         ellipse(30,0,20,10);
-       ellipse(30,20,20,10);
+        ellipse(30,0,20,10);
+        ellipse(30,20,20,10);
        
-         ellipse(60,0,20,10);
-       ellipse(60,20,20,10);
-       
-         popMatrix();
-       
-       
-         
-       }
+        ellipse(60,0,20,10);
+        ellipse(60,20,20,10);
+        popMatrix();
+    }
        
     int which = 0;
     public void keyPressed()
@@ -108,9 +111,6 @@ public class JinasVisual extends Visual
         float average = 0;
         float sum = 0;
 
-        float hw = width / 2; // Half width
-        float hh = height / 2; // Half height
-
         // Iterate over all the elementsthe audio buffer
         for(int i = 0; i < getAb().size(); i++) // ab is an array list of audio buffer so ab.size() gives us the size of array buffer
         {
@@ -135,49 +135,11 @@ public class JinasVisual extends Visual
                 }
 
                 float c = map(average, 0, 1, 0, 255);
-                noStroke(); 
-
-                //i++;
-                pushMatrix();
-                fill(c, 255, 255); // Elmo left arm
-                translate(hw - 50, hh + 200);
-                //rotate(i);
-                rotate(10);
-                rect(0, 0, 300 + (la * 500), 70 + (la * 500), 50);
-                popMatrix();
-
-                pushMatrix();
-                translate(hw, hh + 140);
-                rotate(100);
-                rect(0, 0, 300 + (la * 500), 70 + (la * 500), 50); // Elmo right arm 
-                popMatrix();
-
-                fill(c, 255, 255); // Elmo upper body
-                arc(hw, hh + 400, 300 + (la * 500), 600 + (la * 500), PI, TWO_PI);
-
-                fill(c, 255, 255); // Elmo face    
-                ellipse(hw, hh - 35, 300 + (la * 500), 300 + (la * 500));                
-
-                fill(255); // Elmo eye balls
-                ellipse(hw - 50, hh - 200, 80 + (la * 500), 80 + (la * 500)); 
-                ellipse(hw + 50, hh - 200, 80 + (la * 500), 80 + (la * 500));
-
-                fill(0); // Elmo pupils
-                ellipse(hw - 50, hh - 200, 20 + (la * 500), 20 + (la * 500));
-                ellipse(hw + 50, hh - 200, 20 + (la * 500), 20 + (la * 500));
-
-                fill(33,363,234); // Elmo nose
-                ellipse(hw, hh - 150, 70 + (la * 500), 90 + (la * 500)); 
-
-                fill(0); // Elmo mouth
-                arc(hw, hh - 30, 250 + (la * 500), 220 + (la * 500), 0, PI); 
                 
                 break;
             }
             case 1:
             {
-                
-                
                 flying -= 0.1;
 
                 float yoff = flying;
@@ -222,25 +184,23 @@ public class JinasVisual extends Visual
             }
             case 3:
             {
-                background(255);
+                //float c = map(average, 0, 1, 0, 255);
+                background(0);
                 noStroke();
                 
                 //body
-                    fill(0,216,255);
+                fill(15, 188, 250);
                 ellipse(250,390,180,200);
                 
                 //head
-                fill(0,216,255);
+                fill(15, 188, 250);
                 ellipse(250,250,150,160);
                 
                 //eye
                 fill(0);
                 ellipse(200,220,5,5);
                 ellipse(300,220,5,5);
-                
-                //nnnooo
 
-                
                 pushMatrix();
                 translate(240,260);
                 rotate(radians(60));
