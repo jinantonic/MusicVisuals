@@ -14,6 +14,7 @@ public class JinasVisual extends Visual
 
     float average;
     float hh, hw;
+    float c, c2;
     float speed;
 
     Boolean paused = false;
@@ -67,20 +68,18 @@ public class JinasVisual extends Visual
         images[3] = loadImage("4.png");
         images[4] = loadImage("5.png");
         images[5] = loadImage("6.png");
-
-        
     }
 
     public void mousePressed()
     {
-        startMinim();
-        getAudioPlayer().play();
+        //startMinim();
+        //getAudioPlayer().play();
         
         pushMatrix();
         translate(120,200);
         rotate(radians(200));
         stroke(255);
-        strokeWeight(4);
+        //strokeWeight(4);
        
         fill(255);
         ellipse(0,0,20,10);
@@ -140,6 +139,8 @@ public class JinasVisual extends Visual
                 speed = map(mouseX, 0, width, 0, 20);
                 background(0);
                
+                
+                    
                 for(int i = 0; i < stars.length; i++)
                 {
                     stars[i].update();
