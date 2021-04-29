@@ -138,8 +138,6 @@ public class JinasVisual extends Visual
             {
                 speed = map(mouseX, 0, width, 0, 20);
                 background(0);
-               
-                
                     
                 for(int i = 0; i < stars.length; i++)
                 {

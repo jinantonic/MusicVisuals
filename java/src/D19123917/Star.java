@@ -22,14 +22,19 @@ public class Star
     public void update()
     {
         z = z - jv.speed;
+
         if(z < 1)
         {
-            z = jv.random(jv.width);
-            x = jv.random(-jv.width, jv.width);
-            y = jv.random(-jv.height, jv.height);
-            pz = z;
+            if(!jv.paused)
+            {   
+                z = jv.random(jv.width);
+                x = jv.random(-jv.width, jv.width);
+                y = jv.random(-jv.height, jv.height);
+                pz = z;
+            }
         }
     }
+
 
     public void show()
     {
