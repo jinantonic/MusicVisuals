@@ -32,7 +32,7 @@ public class Monster
             if((jv.frameCount % 4) == 0)
             {
                 i += 0.1f; // i++;
-                JinasVisual.println("VALUE " + i); 
+                //JinasVisual.println("VALUE " + i); 
             }
         }
     }

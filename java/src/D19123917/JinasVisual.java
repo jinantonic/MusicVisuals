@@ -136,23 +136,29 @@ public class JinasVisual extends Visual
         {
             case 0: 
             {
-                speed = map(mouseX, 0, width, 0, 20);
                 background(0);
-                    
-                for(int i = 0; i < stars.length; i++)
-                {
-                    stars[i].update();
-                    stars[i].show();
-                }
-
-                //float c = map(average, 0, 1, 0, 255);
-                
                 for(int i = 0; i < m.size(); i++)
                 {
                     Monster mo = m.get(i);
                     mo.render();
                     mo.update();
                 }
+
+                speed = map(mouseX, 0, width, 0, 20);
+                
+
+                pushMatrix();
+                translate(width/2, 0);
+                for(int i = 0; i < stars.length; i++)
+                {
+                    stars[i].update();
+                    stars[i].show();
+                }
+                popMatrix();
+
+                //float c = map(average, 0, 1, 0, 255);
+                
+                
                 break;
             }
             case 1:
