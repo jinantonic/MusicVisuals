@@ -42,19 +42,34 @@ public class Monster
         jv.noStroke();
 
         jv.fill(x);
-        jv.triangle(jv.width / 2, 0, x - ws + (jv.la * w), y + (w * 0.8f), x + ws + (jv.la * w), y + (w * 0.8f));
+        jv.triangle(jv.width / 2, 0, x - ws + (jv.la * w), y + (w * 2f), x + ws + (jv.la * w), y + (w * 2f));
 
-        jv.pushMatrix();
-        jv.fill(c, 255, 255); // Left arm
+        jv.pushMatrix(); // Left arm
+        jv.fill(c, 255, 255); 
         jv.translate(x - x / 15, y + (w * 0.4f));
         jv.rotate(i);
         jv.rect(0, 0, (ws * 1.1f) + (jv.la * w), ((ws * 0.23f) + (jv.la * w)), 50);
         jv.popMatrix();
 
-        jv.pushMatrix();
+        jv.pushMatrix(); // Right arm
         jv.translate(x + x / 15, y + (w * 0.4f));
         jv.rotate(-i);
-        jv.rect(0, 0, (ws * 1.1f) + (jv.la * w), (ws * 0.23f) + (jv.la * w), 50); // Right arm 
+        jv.rect(0, 0, (ws * 1.1f) + (jv.la * w), (ws * 0.23f) + (jv.la * w), 50); 
+        jv.popMatrix();
+
+        // Right leg
+        jv.pushMatrix();
+        jv.translate(x + (w * 0.1f), y + (w * 0.8f));
+        jv.rotate(200);
+        jv.rect(0, 0, ((ws * 0.4f) + (jv.la * w)), (ws * 1.3f) + (jv.la * w), 15);
+        //jv.arc(x + (w * 0.1f), y + (w * 0.8f), (ws * 0.4f) + (jv.la * w), (ws * 1.1f) + (jv.la * w), JinasVisual.PI, JinasVisual.CHORD);
+        jv.popMatrix();
+
+        // Left leg
+        jv.pushMatrix();
+        //jv.translate();
+        //jv.rotate(188);
+        jv.rect(x - (w * 0.3f), y + (w * 0.7f), ((ws * 0.4f) + (jv.la * w)), (ws * 1.3f) + (jv.la * w), 15);
         jv.popMatrix();
 
         // Upper body
@@ -77,10 +92,6 @@ public class Monster
         jv.fill(0); // Mouth
         jv.arc(x, y - (w * 0.06f), (int)((ws * 0.83) + (jv.la * w)), (int)((ws * 0.73) + (jv.la * w)), 0, JinasVisual.PI); 
     }
-
-
-
-
 
     public float getX() {
         return x;

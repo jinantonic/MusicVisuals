@@ -73,8 +73,9 @@ public class JinasVisual extends Visual
     public void spawnMonster()
     {
         float ran = random(1, width);
-        monster = new Monster(this, ran, hh, color(0, 100, 100), 0.5f);
+        monster = new Monster(this, ran, hh, color(223, 255, 232), 0.5f);
         m.add(monster);
+        //getAudioPlayer().getDuration();
         
     }
 
@@ -174,7 +175,7 @@ public class JinasVisual extends Visual
                 popMatrix();
                
                 println(" " + average);
-                if(average * 1000 > 300)
+                if(average * 1000 > 500)
                 {
                     spawnMonster();
                 }
