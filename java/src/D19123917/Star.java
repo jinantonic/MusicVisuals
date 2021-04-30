@@ -5,6 +5,7 @@ public class Star
     JinasVisual jv;
 
     float x, y, z, pz;
+    float sx, sy, px, py;
 
     
     public Star(JinasVisual jv)
@@ -14,7 +15,7 @@ public class Star
 
     public Star()
     {
-        x = jv.random(-jv.width / 0.75f, jv.width / 4);
+        x = jv.random(-jv.width / 8, jv.width / 8);
         y = jv.random(jv.height * 0.01f, jv.height * 0.1f);
         z = jv.random(jv.width);
         
@@ -22,17 +23,28 @@ public class Star
 
     public void update()
     {
-        z = z - jv.speed;
+        if(!jv.paused)
+        {   
+            z = z - jv.speed;
 
-        if(z < 1)
-        {
-            //if(!jv.paused)
-            //{   
-            z = jv.random(jv.width);
-            x = jv.random(-jv.width / 0.75f, jv.width / 4);
-            y = jv.random(jv.height * 0.01f, jv.height * 0.1f);
-            pz = z;
-            //}
+            
+            if(z < 1)
+            {
+
+
+                z = jv.random(jv.width);
+                x = jv.random(-jv.width / 8, jv.width / 8);
+                y = jv.random(jv.height * 0.01f, jv.height * 0.1f);
+                pz = z;
+
+            }
+            sx = JinasVisual.map(x / z, 0, 1, 0, jv.width);
+            sy = JinasVisual.map(y / z, 0, 1, 0, jv.height);
+
+            px = JinasVisual.map(x / pz, 0, 1, 0, jv.width);
+            py = JinasVisual.map(y / pz, 0, 1, 0, jv.height);
+
+
         }
     }
 
@@ -48,18 +60,15 @@ public class Star
             jv. c2 = JinasVisual.map(i, 0, 300, 0, 255) % 100.0f;
         }   */  
         
-        float sx = JinasVisual.map(x / z, 0, 1, 0, jv.width);
-        float sy = JinasVisual.map(y / z, 0, 1, 0, jv.height);
-        float r = JinasVisual.map(z, 0, jv.width, 16, 0);
+        
+        //float r = JinasVisual.map(z, 0, jv.width, 16, 0);
+        //jv.ellipse(sx, sy, r, r);
 
-
-        jv.ellipse(sx, sy, r, r);
-
-        float px = JinasVisual.map(x / pz, 0, 1, 0, jv.width);
-        float py = JinasVisual.map(y / pz, 0, 1, 0, jv.height);
+        
 
         jv.stroke(255);
         jv.line(px, py, sx, sy);
+        
     }
 
 }

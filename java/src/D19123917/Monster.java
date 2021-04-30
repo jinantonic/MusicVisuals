@@ -26,9 +26,9 @@ public class Monster
 
     public void update()
     {
-        c = JinasVisual.map(jv.average, 0, 1, 0, 255);
         if(!jv.paused)
         {
+            c = JinasVisual.map(jv.average, 0, 1, 0, 255);
             if((jv.frameCount % 4) == 0)
             {
                 i += 0.1f; // i++;
@@ -40,6 +40,9 @@ public class Monster
     public void render()
     {
         jv.noStroke();
+
+        jv.fill(x);
+        jv.triangle(jv.width / 2, 0, x - ws + (jv.la * w), y + (w * 0.8f), x + ws + (jv.la * w), y + (w * 0.8f));
 
         jv.pushMatrix();
         jv.fill(c, 255, 255); // Left arm

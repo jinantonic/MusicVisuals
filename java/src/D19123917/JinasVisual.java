@@ -7,7 +7,7 @@ import processing.core.PImage;
 
 public class JinasVisual extends Visual
 {
-    Star [] stars = new Star[800]; // Create an array named stars
+    Star [] stars = new Star[50]; // Create an array named stars
     PImage [] images = new PImage[7];
     ArrayList<Monster> m = new ArrayList<Monster>();
     Monster monster;
@@ -68,6 +68,14 @@ public class JinasVisual extends Visual
         images[3] = loadImage("4.png");
         images[4] = loadImage("5.png");
         images[5] = loadImage("6.png");
+    }
+
+    public void spawnMonster()
+    {
+        float ran = random(1, width);
+        monster = new Monster(this, ran, hh, color(0, 100, 100), 0.5f);
+        m.add(monster);
+        
     }
 
     public void mousePressed()
@@ -136,26 +144,41 @@ public class JinasVisual extends Visual
         {
             case 0: 
             {
+                
                 background(0);
+                speed = 10;
+                fill(255);
+                circle(width / 2, 0, 200);
+
+            
+                
+                pushMatrix();
+
+                translate(width/2, 0);
+                for(int i = 0; i < stars.length; i++)
+                {
+                    if((frameCount % 10) == 0)
+                    {
+                        stars[i].update();
+                    }
+                    stars[i].show();
+                }
+
+                translate(-width/2, 0);
                 for(int i = 0; i < m.size(); i++)
                 {
                     Monster mo = m.get(i);
                     mo.render();
                     mo.update();
                 }
-
-                speed = map(mouseX, 0, width, 0, 20);
-                
-
-                pushMatrix();
-                translate(width/2, 0);
-                for(int i = 0; i < stars.length; i++)
-                {
-                    stars[i].update();
-                    stars[i].show();
-                }
                 popMatrix();
-
+               
+                println(" " + average);
+                if(average * 1000 > 300)
+                {
+                    spawnMonster();
+                }
+                
                 //float c = map(average, 0, 1, 0, 255);
                 
                 
@@ -305,8 +328,7 @@ public class JinasVisual extends Visual
                 
             }
         }
+        
     }
-
     
-
 }
