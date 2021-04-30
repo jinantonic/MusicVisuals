@@ -41,18 +41,16 @@ public class Monster
     {
         jv.noStroke();
 
-        jv.fill(x);
-        jv.triangle(jv.width / 2, 0, x - ws + (jv.la * w), y + (w * 2f), x + ws + (jv.la * w), y + (w * 2f));
-
+        
         jv.pushMatrix(); // Left arm
         jv.fill(c, 255, 255); 
-        jv.translate(x - x / 15, y + (w * 0.4f));
+        jv.translate(x - x / 25, y + (w * 0.4f));
         jv.rotate(i);
         jv.rect(0, 0, (ws * 1.1f) + (jv.la * w), ((ws * 0.23f) + (jv.la * w)), 50);
         jv.popMatrix();
 
         jv.pushMatrix(); // Right arm
-        jv.translate(x + x / 15, y + (w * 0.4f));
+        jv.translate(x + x / 25, y + (w * 0.4f));
         jv.rotate(-i);
         jv.rect(0, 0, (ws * 1.1f) + (jv.la * w), (ws * 0.23f) + (jv.la * w), 50); 
         jv.popMatrix();
