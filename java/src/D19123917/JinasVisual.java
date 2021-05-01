@@ -53,17 +53,17 @@ public class JinasVisual extends Visual
         loadAudio("Dare.mp3");
         getAudioPlayer().play();
         colorMode(HSB, 100);
-        rectMode(CENTER);
+        //rectMode(CENTER);
         //println(getAp().length()); 
 
-        monster = new Monster(this, hw, hh, c, 0.5f);
+        monster = new Monster(this, hw, hh + 50, c, 0.5f, true);
         m.add(monster);
 
-        //monster= new Monster(this, 100, 150, c, 0.4f);
-        //m.add(monster);    
+        monster= new Monster(this, 100, hh, c, 0.4f, true);
+        m.add(monster);    
         
-        //monster= new Monster(this, 600, 100, c, 0.3f);
-        //m.add(monster); 
+        monster= new Monster(this, 600, hh - 50, c, 0.3f, true);
+        m.add(monster); 
 
         images[0] = loadImage("1.png");
         images[1] = loadImage("2.png");
@@ -78,17 +78,10 @@ public class JinasVisual extends Visual
         if(! paused)
         {
             float ran = random(1, width);
-            monster = new Monster(this, ran, height - (hh / 2), c, 0.3f);
+            monster = new Monster(this, ran, height - (hh / 2), c, 0.3f, false);
             m.add(monster);
             frameRate(20);
         }
-    }
-
-    public void removeMonster()
-    {
-        float ran = random(1, width);
-        monster = new Monster(this, ran, height - (hh / 2), c, 0.3f);
-        m.remove(monster);
     }
 
    
@@ -146,7 +139,7 @@ public class JinasVisual extends Visual
 
                 //float c = map(average, 0, 1, 0, 255);
                 
-                 // 0, 0, 100
+                // 0, 0, 100
                 float c2 = map(la, 0, 0.5f, 0, 255);
                 fill(255, 0, 25 + c2);
                 ellipse(width / 2, 0, 250, 200);
@@ -170,9 +163,9 @@ public class JinasVisual extends Visual
                     triangle(hw, 0, width, height, width, hh / 2);
                 }
 
-                //pushMatrix();
+                pushMatrix();
                 // Draw stars
-                //translate(width/2, 0);
+                translate(width/2, 0);
                 for(int i = 0; i < stars.length; i++)
                 {
                     if((frameCount % 3) == 0)
@@ -181,9 +174,9 @@ public class JinasVisual extends Visual
                     }
                     stars[i].show();
                 }
-                //popMatrix();
+                popMatrix();
 
-                background(0);
+                
                 // Draw elmo
                 //translate(-width/2, 0);
                 for(int i = 0; i < m.size(); i++)
@@ -197,11 +190,7 @@ public class JinasVisual extends Visual
                 {
                     spawnMonster();
                 }
-                else
-                {
-                    //spawnMonster();
-                    removeMonster();
-                }
+               
                 
 
                 if(bla == true)

@@ -11,8 +11,10 @@ public class Monster
     float ws; // width scale
     float i = 0;
     float cc;
+    Boolean stays;
+    int counter;
 
-    public Monster(JinasVisual jv, float x, float y, float c, float s)
+    public Monster(JinasVisual jv, float x, float y, float c, float s, boolean stays)
     {
         this.jv = jv;
         this.x = x;
@@ -22,6 +24,7 @@ public class Monster
         this.w = (jv.width * 0.625f) * s;
         this.h = w * 0.1f;
         this.ws = w * 0.6f;
+        this.stays = stays;
     }
 
     public void update()
@@ -36,6 +39,15 @@ public class Monster
                 //JinasVisual.println("VALUE " + i); 
             }
         }
+
+        if(!stays)
+        {
+            counter++;
+            if(counter>= 10000)
+            {
+                jv.m.remove(this);
+            }
+        }
     }
     
     public void render()
@@ -45,19 +57,21 @@ public class Monster
         
         jv.noStroke();
         
+        jv.rectMode(JinasVisual.CORNER);
         jv.pushMatrix(); // Left arm
         jv.fill(cc, 255, 255); //jv.fill(255, c, 0);
         jv.translate(x - x / 25, y + (w * 0.4f));
         jv.rotate(i);
-        jv.rect(-x / 4, 0, (ws * 1.1f) + (jv.la * w), ((ws * 0.23f) + (jv.la * w)), 50);
+        jv.rect(0, 0, (ws * 1.1f) + (jv.la * w), ((ws * 0.23f) + (jv.la * w)), 50);
         jv.popMatrix();
 
         jv.pushMatrix(); // Right arm
         jv.translate(x + x / 25, y + (w * 0.4f));
         jv.rotate(-i);
-        jv.rect(x / 4, 0, (ws * 1.1f) + (jv.la * w), (ws * 0.23f) + (jv.la * w), 50); 
+        jv.rect(0, 0, (ws * 1.1f) + (jv.la * w), (ws * 0.23f) + (jv.la * w), 50); 
         jv.popMatrix();
 
+        jv.rectMode(JinasVisual.CENTER);
         jv.pushMatrix(); // Right leg
         jv.translate(x + (w * 0.5f), y + (w * 0.8f));
         jv.rotate(200);
