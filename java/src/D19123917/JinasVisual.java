@@ -14,7 +14,7 @@ public class JinasVisual extends Visual
 
     float average;
     float hh, hw;
-    float c, c2;
+    float c;
     float speed;
 
     Boolean paused = false;
@@ -74,10 +74,13 @@ public class JinasVisual extends Visual
 
     public void spawnMonster()
     {
-        float ran = random(1, width);
-        monster = new Monster(this, ran, height - (hh / 2), c, 0.3f);
-        m.add(monster);
-        frameRate(20);
+        if(! paused)
+        {
+            float ran = random(1, width);
+            monster = new Monster(this, ran, height - (hh / 2), c, 0.3f);
+            m.add(monster);
+            frameRate(20);
+        }
     }
 
     public void removeMonster()
@@ -137,41 +140,33 @@ public class JinasVisual extends Visual
         {
             case 0: 
             {
-                
                 background(0);
                 speed = 10;
 
                 //float c = map(average, 0, 1, 0, 255);
                 
-                fill(0, 0, 100);
-                circle(width / 2, 0, 200);
-
+                fill(0, 0, 70); // 0, 0, 100
+                ellipse(width / 2, 0, 250, 200);
                 
                 //println(" " + average);
                 if(average * 1000 > 50)
                 {
-                    //fill(0, 0, 100);
-                    //circle(width / 2, 0, 200);
                     triangle(hw, 0, hw - 200, height, hw + 200, height);
 
                     //triangle(hw, 0, -w, h, w, h);
 
                     //spawnMonster();
                 }
-                else if(average * 1000 > 60)
+                /*else if(average * 1000 > 60)
                 {
-                    //fill(0, 0, 100);
                     //triangle(hw, 0, width, height, width, hh / 2);
-                }
+                }*/
                 else
                 {
-                    //fill(0, 0, 100);
                     triangle(hw, 0, 0, hh / 2, 0, height);
                     triangle(hw, 0, width, height, width, hh / 2);
-                    
                 }
 
-                
                 // Draw stars
                 translate(width/2, 0);
                 for(int i = 0; i < stars.length; i++)
@@ -188,18 +183,17 @@ public class JinasVisual extends Visual
                 for(int i = 0; i < m.size(); i++)
                 {
                     Monster mo = m.get(i);
-                    
-                
                     mo.render();
                     mo.update();
                 }
 
-                if(la * 1000 > 100 && la * 1000 < 130)
+                if(la * 100 > 18 && la * 100 < 20)
                 {
                     spawnMonster();
                 }
                 else
                 {
+                    //spawnMonster();
                     removeMonster();
                 }
                 
@@ -292,10 +286,6 @@ public class JinasVisual extends Visual
                     lastY = y;
                 }
                 break;
-            }
-            case 5:
-            {
-                
             }
         }
         
