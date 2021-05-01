@@ -145,7 +145,6 @@ public class JinasVisual extends Visual
                 
                 fill(0, 0, 100);
                 circle(width / 2, 0, 200);
-                
 
                 
                 //println(" " + average);
@@ -153,8 +152,7 @@ public class JinasVisual extends Visual
                 {
                     //fill(0, 0, 100);
                     //circle(width / 2, 0, 200);
-                    triangle(hw, 0, 0, hh / 2, 0, height);
-                    triangle(hw, 0, width, height, width, hh / 2);
+                    triangle(hw, 0, hw - 200, height, hw + 200, height);
 
                     //triangle(hw, 0, -w, h, w, h);
 
@@ -168,7 +166,9 @@ public class JinasVisual extends Visual
                 else
                 {
                     //fill(0, 0, 100);
-                    triangle(hw, 0, hw - 200, height, hw + 200, height);
+                    triangle(hw, 0, 0, hh / 2, 0, height);
+                    triangle(hw, 0, width, height, width, hh / 2);
+                    
                 }
 
                 
