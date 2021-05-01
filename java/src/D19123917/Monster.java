@@ -29,6 +29,7 @@ public class Monster
         if(!jv.paused)
         {
             c = JinasVisual.map(jv.average, 0, 1, 0, 255);
+
             if((jv.frameCount % 4) == 0)
             {
                 i += 0.1f; // i++;
@@ -40,10 +41,9 @@ public class Monster
     public void render()
     {
         jv.noStroke();
-
         
         jv.pushMatrix(); // Left arm
-        jv.fill(c, 255, 255); 
+        jv.fill(255, c, 0); 
         jv.translate(x - x / 25, y + (w * 0.4f));
         jv.rotate(i);
         jv.rect(0, 0, (ws * 1.1f) + (jv.la * w), ((ws * 0.23f) + (jv.la * w)), 50);
@@ -60,13 +60,10 @@ public class Monster
         jv.translate(x + (w * 0.1f), y + (w * 0.8f));
         jv.rotate(200);
         jv.rect(0, 0, ((ws * 0.4f) + (jv.la * w)), (ws * 1.3f) + (jv.la * w), 15);
-        //jv.arc(x + (w * 0.1f), y + (w * 0.8f), (ws * 0.4f) + (jv.la * w), (ws * 1.1f) + (jv.la * w), JinasVisual.PI, JinasVisual.CHORD);
         jv.popMatrix();
 
         // Left leg
         jv.pushMatrix();
-        //jv.translate();
-        //jv.rotate(188);
         jv.rect(x - (w * 0.3f), y + (w * 0.7f), ((ws * 0.4f) + (jv.la * w)), (ws * 1.3f) + (jv.la * w), 15);
         jv.popMatrix();
 
@@ -84,7 +81,7 @@ public class Monster
         jv.circle(x - (w * 0.1f), y - (w * 0.4f), (int)((ws * 0.06) + (jv.la * w)));
         jv.circle(x + (w * 0.1f), y - (w * 0.4f), (int)((ws * 0.06) + (jv.la * w)));
         
-        jv.fill(33,363,234); // Nose
+        jv.fill(255, 128, 0); // Nose
         jv.ellipse(x, y - (w * 0.3f), (int)((ws * 0.23) + (jv.la * w)), (int)((ws * 0.3) + (jv.la * w))); 
 
         jv.fill(0); // Mouth
@@ -127,6 +124,4 @@ public class Monster
     public void setS(float s) {
         this.s = s;
     }
-
-    
 }

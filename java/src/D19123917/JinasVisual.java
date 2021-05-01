@@ -51,15 +51,15 @@ public class JinasVisual extends Visual
         surface.setResizable(true);
         loadAudio("POPSTAR.mp3");
         getAudioPlayer().play();
-        colorMode(HSB);
+        colorMode(RGB);
 
-        monster = new Monster(this, hw, hh, color(0, 100, 100), 0.5f);
+        monster = new Monster(this, hw, hh, c, 0.5f);
         m.add(monster);
 
-        monster= new Monster(this, 100, 200, color(200, 100, 100), 0.4f);
+        monster= new Monster(this, 100, 200, c, 0.4f);
         m.add(monster);    
         
-        monster= new Monster(this, 600, 300, color(200, 100, 100), 0.3f);
+        monster= new Monster(this, 600, 100, c, 0.3f);
         m.add(monster); 
 
         images[0] = loadImage("1.png");
@@ -73,7 +73,7 @@ public class JinasVisual extends Visual
     public void spawnMonster()
     {
         float ran = random(1, width);
-        monster = new Monster(this, ran, hh, color(223, 255, 232), 0.5f);
+        monster = new Monster(this, ran, hh, c, 0.5f);
         m.add(monster);
         frameRate(-10);
         //getAudioPlayer().getDuration();
@@ -154,19 +154,25 @@ public class JinasVisual extends Visual
                 fill(255);
                 circle(width / 2, 0, 200);
 
-                println(" " + average);
+                //println(" " + average);
                 if(average * 10000 > 500)
                 {
                     fill(255);
-                    triangle(hw, 0, hw - 500, h, hw + 500, h);
+                    circle(width / 2, 0, 200);
+                    triangle(hw, 0, hw + 1000, h, w, hh / 2);
                     //triangle(hw, 0, -w, h, w, h);
 
                     //spawnMonster();
                 }
-                else if(average * 10000 > 600)
+                else if(average * 10000 > 300)
                 {
                     fill(255);
-                    triangle(hw, 0, hw - 1800, h, hw + 500, h);
+                    triangle(hw, 0, 0, hh / 2, hw - 800, h);
+                }
+                else
+                {
+                    fill(255);
+                    triangle(hw, 0, hw - 800, h, 0, hh / 2);
                 }
 
                 //jv.fill(x);
@@ -192,12 +198,6 @@ public class JinasVisual extends Visual
                     mo.render();
                     mo.update();
                 }
-                
-                
-                
-                
-                
-                
                 break;
             }
             case 1:
