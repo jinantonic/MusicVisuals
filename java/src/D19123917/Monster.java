@@ -49,23 +49,23 @@ public class Monster
         jv.fill(cc, 255, 255); //jv.fill(255, c, 0);
         jv.translate(x - x / 25, y + (w * 0.4f));
         jv.rotate(i);
-        jv.rect(0, 0, (ws * 1.1f) + (jv.la * w), ((ws * 0.23f) + (jv.la * w)), 50);
+        jv.rect(-x / 4, 0, (ws * 1.1f) + (jv.la * w), ((ws * 0.23f) + (jv.la * w)), 50);
         jv.popMatrix();
 
         jv.pushMatrix(); // Right arm
         jv.translate(x + x / 25, y + (w * 0.4f));
         jv.rotate(-i);
-        jv.rect(0, 0, (ws * 1.1f) + (jv.la * w), (ws * 0.23f) + (jv.la * w), 50); 
+        jv.rect(x / 4, 0, (ws * 1.1f) + (jv.la * w), (ws * 0.23f) + (jv.la * w), 50); 
         jv.popMatrix();
 
         jv.pushMatrix(); // Right leg
-        jv.translate(x + (w * 0.1f), y + (w * 0.8f));
+        jv.translate(x + (w * 0.5f), y + (w * 0.8f));
         jv.rotate(200);
         jv.rect(0, 0, ((ws * 0.4f) + (jv.la * w)), (ws * 1.3f) + (jv.la * w), 15);
         jv.popMatrix();
 
         jv.pushMatrix(); // Left leg
-        jv.rect(x - (w * 0.3f), y + (w * 0.7f), ((ws * 0.4f) + (jv.la * w)), (ws * 1.3f) + (jv.la * w), 15);
+        jv.rect(x - (w * 0.178f), y + (w * 1.05f), ((ws * 0.4f) + (jv.la * w)), (ws * 1.3f) + (jv.la * w), 15);
         jv.popMatrix();
 
         // Upper body

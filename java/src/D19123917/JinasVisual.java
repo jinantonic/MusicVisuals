@@ -53,16 +53,17 @@ public class JinasVisual extends Visual
         loadAudio("Dare.mp3");
         getAudioPlayer().play();
         colorMode(HSB, 100);
+        rectMode(CENTER);
         //println(getAp().length()); 
 
         monster = new Monster(this, hw, hh, c, 0.5f);
         m.add(monster);
 
-        monster= new Monster(this, 100, 150, c, 0.4f);
-        m.add(monster);    
+        //monster= new Monster(this, 100, 150, c, 0.4f);
+        //m.add(monster);    
         
-        monster= new Monster(this, 600, 100, c, 0.3f);
-        m.add(monster); 
+        //monster= new Monster(this, 600, 100, c, 0.3f);
+        //m.add(monster); 
 
         images[0] = loadImage("1.png");
         images[1] = loadImage("2.png");
@@ -134,7 +135,7 @@ public class JinasVisual extends Visual
         
         average = sum / (float) getAb().size();
         la = lerp(la, average, 0.1f); // Lerped average
-        println(la);
+        //fprintln(la);
 
         switch(which)
         {
@@ -145,7 +146,9 @@ public class JinasVisual extends Visual
 
                 //float c = map(average, 0, 1, 0, 255);
                 
-                fill(0, 0, 70); // 0, 0, 100
+                 // 0, 0, 100
+                float c2 = map(la, 0, 0.5f, 0, 255);
+                fill(255, 0, 25 + c2);
                 ellipse(width / 2, 0, 250, 200);
                 
                 //println(" " + average);
@@ -167,8 +170,9 @@ public class JinasVisual extends Visual
                     triangle(hw, 0, width, height, width, hh / 2);
                 }
 
+                //pushMatrix();
                 // Draw stars
-                translate(width/2, 0);
+                //translate(width/2, 0);
                 for(int i = 0; i < stars.length; i++)
                 {
                     if((frameCount % 3) == 0)
@@ -177,9 +181,11 @@ public class JinasVisual extends Visual
                     }
                     stars[i].show();
                 }
+                //popMatrix();
 
+                background(0);
                 // Draw elmo
-                translate(-width/2, 0);
+                //translate(-width/2, 0);
                 for(int i = 0; i < m.size(); i++)
                 {
                     Monster mo = m.get(i);
