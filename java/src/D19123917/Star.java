@@ -7,6 +7,7 @@ public class Star
 
     float x, y, z, pz;
     float sx, sy, px, py;
+    float cc;
 
     
     public Star(JinasVisual jv)
@@ -46,17 +47,30 @@ public class Star
 
     public void show()
     {
+        
         jv.fill(255);
-        jv.noStroke();
+        //jv.noStroke();
 
         for(int i = 0; i < 1000; i++) // Calculate 1000 points on the outside of a spiral -> doing that for 1000 times
         {
             float c = JinasVisual.map(i, 0, 300, 0, 255) % 170.4f;
             //float c2 = JinasVisual.map(i, 0, 300, 0, 255) % 130.0f;
-            jv.strokeWeight(3);
-            jv.stroke(c, 255, 255, 100);
+           
+            
         }   
         
+       
+
+        if (cc >= 255)
+        {
+            cc = 0;
+        }
+        else
+        {
+            cc++;
+        }
+        jv.strokeWeight(1);
+        jv.stroke(cc, 100, 255);
         jv.line(px, py, sx, sy);
         
     }

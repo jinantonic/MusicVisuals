@@ -18,6 +18,7 @@ public class JinasVisual extends Visual
     float speed;
 
     Boolean paused = false;
+    Boolean bla = false;
 
     int cols, rows;
     int scl = 20;
@@ -49,14 +50,15 @@ public class JinasVisual extends Visual
     {
         startMinim();
         surface.setResizable(true);
-        loadAudio("BrotherLouie.mp3");
+        loadAudio("Dare.mp3");
         getAudioPlayer().play();
-        colorMode(RGB);
+        colorMode(HSB, 100);
+        //println(getAp().length()); 
 
         monster = new Monster(this, hw, hh, c, 0.5f);
         m.add(monster);
 
-        monster= new Monster(this, 100, 200, c, 0.4f);
+        monster= new Monster(this, 100, 150, c, 0.4f);
         m.add(monster);    
         
         monster= new Monster(this, 600, 100, c, 0.3f);
@@ -73,36 +75,19 @@ public class JinasVisual extends Visual
     public void spawnMonster()
     {
         float ran = random(1, width);
-        monster = new Monster(this, ran, hh, c, 0.5f);
+        monster = new Monster(this, ran, height - (hh / 2), c, 0.3f);
         m.add(monster);
-        frameRate(-10);
-        //getAudioPlayer().getDuration();
-        
+        frameRate(20);
     }
 
-    public void mousePressed()
+    public void removeMonster()
     {
-        //startMinim();
-        //getAudioPlayer().play();
-        
-        pushMatrix();
-        translate(120,200);
-        rotate(radians(200));
-        stroke(255);
-        //strokeWeight(4);
-       
-        fill(255);
-        ellipse(0,0,20,10);
-        ellipse(0,20,20,10);
-       
-        ellipse(30,0,20,10);
-        ellipse(30,20,20,10);
-       
-        ellipse(60,0,20,10);
-        ellipse(60,20,20,10);
-        popMatrix();
+        float ran = random(1, width);
+        monster = new Monster(this, ran, height - (hh / 2), c, 0.3f);
+        m.remove(monster);
     }
-       
+
+   
     int which = 0;
 
     public void keyPressed()
@@ -137,10 +122,16 @@ public class JinasVisual extends Visual
         for(int i = 0; i < getAb().size(); i++) // ab is an array list of audio buffer so ab.size() gives us the size of array buffer
         {
             sum += abs(getAb().get(i)); // This is how you look inside the arraylist and get element i out of the arraylist
+            //println(getAb().size());
+            if(sum > 1 && sum < 10)
+            {
+                //bla = true;
+            }
         }
         
         average = sum / (float) getAb().size();
         la = lerp(la, average, 0.1f); // Lerped average
+        println(la);
 
         switch(which)
         {
@@ -150,40 +141,42 @@ public class JinasVisual extends Visual
                 background(0);
                 speed = 10;
 
-                float c = map(average, 0, 1, 0, 255);
-                fill(255);
+                //float c = map(average, 0, 1, 0, 255);
+                
+                fill(0, 0, 100);
                 circle(width / 2, 0, 200);
+                
 
+                
                 //println(" " + average);
-                if(average * 10000 > 500)
+                if(average * 1000 > 50)
                 {
-                    fill(255);
-                    circle(width / 2, 0, 200);
-                    triangle(hw, 0, hw + 1000, h, w, hh / 2);
+                    //fill(0, 0, 100);
+                    //circle(width / 2, 0, 200);
+                    triangle(hw, 0, 0, hh / 2, 0, height);
+                    triangle(hw, 0, width, height, width, hh / 2);
+
                     //triangle(hw, 0, -w, h, w, h);
 
                     //spawnMonster();
                 }
-                else if(average * 10000 > 300)
+                else if(average * 1000 > 60)
                 {
-                    fill(255);
-                    triangle(hw, 0, 0, hh / 2, hw - 800, h);
+                    //fill(0, 0, 100);
+                    //triangle(hw, 0, width, height, width, hh / 2);
                 }
                 else
                 {
-                    fill(255);
-                    triangle(hw, 0, hw - 800, h, 0, hh / 2);
+                    //fill(0, 0, 100);
+                    triangle(hw, 0, hw - 200, height, hw + 200, height);
                 }
-
-                //jv.fill(x);
-                //jv.triangle(jv.width / 2, 0, x - ws + (jv.la * w), y + (w * 2f), x + ws + (jv.la * w), y + (w * 2f));
 
                 
                 // Draw stars
                 translate(width/2, 0);
                 for(int i = 0; i < stars.length; i++)
                 {
-                    if((frameCount % 2) == 0)
+                    if((frameCount % 3) == 0)
                     {
                         stars[i].update();
                     }
@@ -195,9 +188,33 @@ public class JinasVisual extends Visual
                 for(int i = 0; i < m.size(); i++)
                 {
                     Monster mo = m.get(i);
+                    
+                
                     mo.render();
                     mo.update();
                 }
+
+                if(la * 1000 > 100 && la * 1000 < 130)
+                {
+                    spawnMonster();
+                }
+                else
+                {
+                    removeMonster();
+                }
+                
+
+                if(bla == true)
+                {
+                    //spawnMonster();
+                }
+
+
+                if(average * 1000 > 70 && average * 1000 < 80)
+                {
+                    //spawnMonster();
+                }
+
                 break;
             }
             case 1:
@@ -250,69 +267,6 @@ public class JinasVisual extends Visual
             }
             case 3:
             {
-                //float c = map(average, 0, 1, 0, 255);
-                background(0);
-                noStroke();
-                
-                //body
-                fill(15, 188, 250);
-                ellipse(250,390,180,200);
-                
-                //head
-                fill(15, 188, 250);
-                ellipse(250,250,150,160);
-                
-                //eye
-                fill(0);
-                ellipse(200,220,5,5);
-                ellipse(300,220,5,5);
-
-                pushMatrix();
-                translate(240,260);
-                rotate(radians(60));
-                //stroke(200);
-                
-                fill(255);
-                ellipse(0,0,30,40);
-                popMatrix();
-                
-                pushMatrix();
-                translate(260,260);
-                rotate(radians(120));
-                // stroke(200);
-                
-                fill(255);
-                ellipse(0,0,30,40);
-                popMatrix();
-                
-                //noStroke();
-                fill(255);
-                ellipse(250,260,30,10);
-                
-                //nose
-                noStroke();
-                fill(0);
-                ellipse(250,250,22,22);
-                
-                //f
-                stroke(0);
-                fill(255,0,0);
-                line(210, 255, 230, 260);
-                line(230, 265, 200, 270);
-                line(210, 280, 230, 270);
-                
-                pushMatrix();
-                translate(390,590);
-                rotate(radians(200));
-                stroke(0);
-                
-                fill(255,0,0);
-                line(210, 255, 230, 260);
-                line(230, 265, 200, 270);
-                line(210, 280, 230, 270);
-                popMatrix();
-
-                break;
             }
             case 4:
             {

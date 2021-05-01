@@ -10,7 +10,7 @@ public class Monster
     float s; // scale
     float ws; // width scale
     float i = 0;
-    
+    float cc;
 
     public Monster(JinasVisual jv, float x, float y, float c, float s)
     {
@@ -32,7 +32,7 @@ public class Monster
 
             if((jv.frameCount % 4) == 0)
             {
-                i += 0.1f; // i++;
+                i += 0.1f; //i++;
                 //JinasVisual.println("VALUE " + i); 
             }
         }
@@ -40,10 +40,20 @@ public class Monster
     
     public void render()
     {
+        if (cc >= 255)
+        {
+            cc = 0;
+        }
+        else
+        {
+            cc++;
+        }
+        
         jv.noStroke();
         
         jv.pushMatrix(); // Left arm
-        jv.fill(255, c, 0); 
+        jv.fill(cc, 255, 255); 
+        //jv.fill(255, c, 0);
         jv.translate(x - x / 25, y + (w * 0.4f));
         jv.rotate(i);
         jv.rect(0, 0, (ws * 1.1f) + (jv.la * w), ((ws * 0.23f) + (jv.la * w)), 50);
@@ -55,15 +65,13 @@ public class Monster
         jv.rect(0, 0, (ws * 1.1f) + (jv.la * w), (ws * 0.23f) + (jv.la * w), 50); 
         jv.popMatrix();
 
-        // Right leg
-        jv.pushMatrix();
+        jv.pushMatrix(); // Right leg
         jv.translate(x + (w * 0.1f), y + (w * 0.8f));
         jv.rotate(200);
         jv.rect(0, 0, ((ws * 0.4f) + (jv.la * w)), (ws * 1.3f) + (jv.la * w), 15);
         jv.popMatrix();
 
-        // Left leg
-        jv.pushMatrix();
+        jv.pushMatrix(); // Left leg
         jv.rect(x - (w * 0.3f), y + (w * 0.7f), ((ws * 0.4f) + (jv.la * w)), (ws * 1.3f) + (jv.la * w), 15);
         jv.popMatrix();
 
@@ -73,7 +81,7 @@ public class Monster
         // Face    
         jv.ellipse(x, y - (w * 0.07f), ws + (jv.la * w), ws + (jv.la * w));                
 
-        jv.fill(255); // Eye balls
+        jv.fill(0, 0, 100); // Eye balls
         jv.circle(x - (w * 0.1f), y - (w * 0.4f), (int)((ws * 0.26) + (jv.la * w)));
         jv.circle(x + (w * 0.1f), y - (w * 0.4f), (int)((ws * 0.26) + (jv.la * w)));
 
@@ -81,7 +89,7 @@ public class Monster
         jv.circle(x - (w * 0.1f), y - (w * 0.4f), (int)((ws * 0.06) + (jv.la * w)));
         jv.circle(x + (w * 0.1f), y - (w * 0.4f), (int)((ws * 0.06) + (jv.la * w)));
         
-        jv.fill(255, 128, 0); // Nose
+        jv.fill(10, 100, 100); // Nose
         jv.ellipse(x, y - (w * 0.3f), (int)((ws * 0.23) + (jv.la * w)), (int)((ws * 0.3) + (jv.la * w))); 
 
         jv.fill(0); // Mouth
