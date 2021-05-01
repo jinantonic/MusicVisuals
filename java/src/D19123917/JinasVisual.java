@@ -49,7 +49,7 @@ public class JinasVisual extends Visual
     {
         startMinim();
         surface.setResizable(true);
-        loadAudio("POPSTAR.mp3");
+        loadAudio("BrotherLouie.mp3");
         getAudioPlayer().play();
         colorMode(RGB);
 
