@@ -58,6 +58,7 @@ public class Monster
         jv.noStroke();
         
         jv.rectMode(JinasVisual.CORNER);
+
         jv.pushMatrix(); // Left arm
         jv.fill(cc, 255, 255); //jv.fill(255, c, 0);
         jv.translate(x - x / 25, y + (w * 0.4f));
@@ -72,6 +73,7 @@ public class Monster
         jv.popMatrix();
 
         jv.rectMode(JinasVisual.CENTER);
+        
         jv.pushMatrix(); // Right leg
         jv.translate(x + (w * 0.5f), y + (w * 0.8f));
         jv.rotate(200);
@@ -79,7 +81,7 @@ public class Monster
         jv.popMatrix();
 
         jv.pushMatrix(); // Left leg
-        jv.rect(x - (w * 0.178f), y + (w * 1.05f), ((ws * 0.4f) + (jv.la * w)), (ws * 1.3f) + (jv.la * w), 15);
+        jv.rect(x - (w * 0.176f), y + (w * 1.05f), ((ws * 0.4f) + (jv.la * w)), (ws * 1.3f) + (jv.la * w), 15);
         jv.popMatrix();
 
         // Upper body

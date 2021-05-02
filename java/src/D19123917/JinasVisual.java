@@ -18,7 +18,6 @@ public class JinasVisual extends Visual
     float speed;
 
     Boolean paused = false;
-    Boolean bla = false;
 
     int cols, rows;
     int scl = 20;
@@ -53,16 +52,14 @@ public class JinasVisual extends Visual
         loadAudio("Dare.mp3");
         getAudioPlayer().play();
         colorMode(HSB, 100);
-        //rectMode(CENTER);
-        //println(getAp().length()); 
 
         monster = new Monster(this, hw, hh + 50, c, 0.5f, true);
         m.add(monster);
 
-        monster= new Monster(this, 100, hh, c, 0.4f, true);
+        monster= new Monster(this, 100, hh - 40, c, 0.4f, true);
         m.add(monster);    
         
-        monster= new Monster(this, 600, hh - 50, c, 0.3f, true);
+        monster= new Monster(this, 650, hh - 50, c, 0.3f, true);
         m.add(monster); 
 
         images[0] = loadImage("1.png");
@@ -119,16 +116,10 @@ public class JinasVisual extends Visual
         for(int i = 0; i < getAb().size(); i++) // ab is an array list of audio buffer so ab.size() gives us the size of array buffer
         {
             sum += abs(getAb().get(i)); // This is how you look inside the arraylist and get element i out of the arraylist
-            //println(getAb().size());
-            if(sum > 1 && sum < 10)
-            {
-                //bla = true;
-            }
         }
         
         average = sum / (float) getAb().size();
         la = lerp(la, average, 0.1f); // Lerped average
-        //fprintln(la);
 
         switch(which)
         {
@@ -139,7 +130,6 @@ public class JinasVisual extends Visual
 
                 //float c = map(average, 0, 1, 0, 255);
                 
-                // 0, 0, 100
                 float c2 = map(la, 0, 0.5f, 0, 255);
                 fill(255, 0, 25 + c2);
                 ellipse(width / 2, 0, 250, 200);
@@ -163,8 +153,8 @@ public class JinasVisual extends Visual
                     triangle(hw, 0, width, height, width, hh / 2);
                 }
 
-                pushMatrix();
                 // Draw stars
+                pushMatrix();
                 translate(width/2, 0);
                 for(int i = 0; i < stars.length; i++)
                 {
@@ -190,19 +180,11 @@ public class JinasVisual extends Visual
                 {
                     spawnMonster();
                 }
-               
-                
 
-                if(bla == true)
+                /*if(average * 1000 > 70 && average * 1000 < 80)
                 {
-                    //spawnMonster();
-                }
-
-
-                if(average * 1000 > 70 && average * 1000 < 80)
-                {
-                    //spawnMonster();
-                }
+                    spawnMonster();
+                }*/
 
                 break;
             }

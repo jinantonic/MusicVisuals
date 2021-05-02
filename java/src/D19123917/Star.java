@@ -48,8 +48,7 @@ public class Star
         else cc++;
 
         jv.strokeWeight(2);
-        jv.stroke(0, 0, 255);
-        //jv.stroke(cc, 100, 255);
+        jv.stroke(cc, 100, 255);
         jv.line(px, py, sx, sy);
         
     }
