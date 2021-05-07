@@ -12,7 +12,7 @@ It has been over a year since the pandemic hit the whole world and here we are s
 
 
 # Instructions
-It is a very simple program that responds to the music, so the music and the movement stop when you press the space bar and when you hit a space bar again, music starts playing and Elmos start dancing again. 
+It is a very simple program that responds to the music, so the music and the movement stop when you press the space bar and it resumes when you hit a space bar again. 
 
 
 
@@ -54,3 +54,4 @@ I may not have good coding skill yet, but I tried my best to implement the visua
 
 [![YouTube](https://i.ytimg.com/vi/xY2zeKEhhEc/maxresdefault.jpg)](https://youtu.be/xY2zeKEhhEc)
 >>>>>>> 2c1453b24d08af7a2914184e17b4bdaf1071fd76
+
