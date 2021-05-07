@@ -29,14 +29,19 @@ The party without the disco ball is like the tortoise without the shell. The dis
 # What I am most proud of in the assignment
 It was a challenge since I am not familiar with the java language and my coding skill was not enough to implement my imagination. However, as time goes by, I was able to execute functions that I planned and gain so much knowledge discovering the methods and techniques for each situation. I never thought I could create a project that reacts to the music and now I have a satisfying result that can remind me of my favourite song that helped me to go through a hard time. My sincere gratitude to Brayn that I was able to earn professional knowledge through this assignment and confidence as well as motivation in coding. I am mainly proud of:
 
+
 - Visualising the Elmo using java processing
 - The rainbow HSB colour shades using a simple for loop
-- Simple and not hard coded project
+- Simple and not hardcoded project
 - Unique visual of the program
 - Usage of the lerped average of the song to calculate the timing of mini Elmos appearing
 - Inspection of the average value to control the spotlight timing 
+- 
 
-I may not have the good coding skill yet, but I tried my best to implement the visualisation and succeeded to make them working without using the fancy techniques. Based on this accomplishment, I am now ready to step up as a baby developer and create a masterpiece with the best efficiency.
+I may not have good coding skill yet, but I tried my best to implement the visualisation and succeeded to make them working without using fancy techniques. Based on this accomplishment, I am now ready to step up as a baby developer and create a masterpiece with the best efficiency.
+
+
+
 
 
 
