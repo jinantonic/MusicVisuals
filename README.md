@@ -4,16 +4,13 @@ Name: Jina Park
 
 Student Number: D19123917
 
-## Instructions
-- Fork this repository and use it a starter project for your assignment
-- Create a new package named your student number and put all your code in this package.
-- You should start by creating a subclass of ie.tudublin.Visual
-- There is an example visualiser called MyVisual in the example package
-- Check out the WaveForm and AudioBandsVisual for examples of how to call the Processing functions from other classes that are not subclasses of PApplet
 
 # Description of the assignment
+It has been over a year since the pandemic hit the whole world and here we are still living our lives, wasting our youth. Even though it has been such a   devastating experience, as a Korean poet Sang-wha Lee said, Spring comes to the lost land. This assignment represents the eagerness for the joy that we used to appreciate and the hope that we soon will be able to reunite with it. Since I am a huge music fan who barely turns off the music, I wanted to create an art piece which reacts to the music, so the quality of my life can be increased while I'm listening to the tunes. My all time favourite character is Elmo so he was chosen as a main actor of the program. He starts dancing with his 2 friends and as the song is being close to the hook, mini elmos are created and they all vibe together.
+
 
 # Instructions
+This project is consist of 4 classes which are Main, JinasVisual, Star and  Monster. Through the main class, the other three classes start executing and sharing the visualisation. 
 
 # How it works
 
