@@ -10,11 +10,11 @@ public class Main
 	{
 		String[] a = {"MAIN"};
         processing.core.PApplet.runSketch(a, new JinasVisual());		
-	}
+	} // end starUI()
 
 	public static void main(String[] args)
 	{
 		Main main = new Main();   
 		main.startUI();	
-	}
-}
+	} // end main()
+} // end main

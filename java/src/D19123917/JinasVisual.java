@@ -6,14 +6,15 @@ import ie.tudublin.*;
 
 public class JinasVisual extends Visual
 {
-    Star [] stars = new Star[50]; // Create an array named stars
+    
+    Star [] stars = new Star[50]; // Create an array named stars, which will be filled with 50 elements made from Star class
     ArrayList<Monster> m = new ArrayList<Monster>(); // Create an arraylist of a monster
     Monster monster;
 
     float average;
     float hh, hw;
     float c;
-    float speed;
+    float speed; // Control the speed of the stars
 
     Boolean paused = false;
 
@@ -30,11 +31,13 @@ public class JinasVisual extends Visual
         hw = width / 2; // Half width
         hh = height / 2; // Half height
 
+        // Run for 50 times, creating the new star
         for(int i = 0; i < stars.length; i++)
         {
             stars[i] = new Star(this);
-        }
-    }   
+        } // end for
+    } // end settings() 
+
 
     public void setup()
     {
@@ -52,7 +55,7 @@ public class JinasVisual extends Visual
         
         monster= new Monster(this, width - hw / 3, hh - hh * 0.4f, c, 0.3f, true);
         m.add(monster); 
-    }
+    } // end setup()
 
 
     public void spawnMonster()
@@ -64,8 +67,8 @@ public class JinasVisual extends Visual
             monster = new Monster(this, ran, run, c, 0.2f, false);
             m.add(monster);
             frameRate(40);
-        }
-    }
+        } // end if
+    } // end spawnMonster()
 
    
     int which = 0;
@@ -75,7 +78,7 @@ public class JinasVisual extends Visual
         if(keyCode >= '0' && keyCode <= '5')
         {
             which = keyCode - '0';
-        }
+        } // end if
 
         if(keyCode == ' ') // If i push the space bar 
         {
@@ -83,17 +86,17 @@ public class JinasVisual extends Visual
             { 
                 getAp().pause(); // Pause the audio
                 paused = true;
-            }
+            } // end inner if
             else
             {
                 //getAp().rewind(); // Rewind
                 getAp().play(); // Play 
                 paused = false;
-            }
-        }
-    }
+            } // end else
+        } // end outer if
+    } // end keyPressed()
 
-    float la = 0;
+    float la = 0; // Set lerped average as 0
 
     public void draw()
     {   
@@ -103,7 +106,7 @@ public class JinasVisual extends Visual
         for(int i = 0; i < getAb().size(); i++) // ab is an array list of audio buffer so ab.size() gives us the size of array buffer
         {
             sum += abs(getAb().get(i)); // This is how you look inside the arraylist and get element i out of the arraylist
-        }
+        } // end for
         
         average = sum / (float) getAb().size();
         la = lerp(la, average, 0.1f); // Lerped average
@@ -121,27 +124,28 @@ public class JinasVisual extends Visual
                 ellipse(width / 2, 0, 250, 200);
 
                 // Draw spotlights
-                if(average * 1000 > 50)
+                if(average * 1000 > 70)
                 {
                     triangle(hw, 0, hw - 200, height, hw + 200, height);
-                }
+                } // end if
                 else
                 {
                     triangle(hw, 0, 0, hh / 2, 0, height);
                     triangle(hw, 0, width, height, width, hh / 2);
-                }
+                } //end else
 
                 // Draw stars
                 pushMatrix();
-                translate(width/2, 0);
+                translate(width/2, 0); // Translate the composition
                 for(int i = 0; i < stars.length; i++)
                 {
                     if((frameCount % 3) == 0)
                     {
                         stars[i].update();
-                    }
+                    } // end if
+
                     stars[i].show();
-                }
+                } // end for
                 popMatrix();
 
                 
@@ -152,6 +156,7 @@ public class JinasVisual extends Visual
                     mo.render();
                     mo.update();
                 }
+
 
                 if(la * 100 > 19 && la * 100 < 20)
                 {
@@ -201,6 +206,5 @@ public class JinasVisual extends Visual
             }
         }
         
-    }
-    
-}
+    } // end draw()
+} // end JinasVisual

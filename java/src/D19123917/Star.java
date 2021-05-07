@@ -8,19 +8,21 @@ public class Star
     float sx, sy, px, py;
     float cc;
 
-
+    // Constructor
     public Star(JinasVisual jv)
     {
         this.jv = jv;
-    }
+    } // end Star
 
 
+    // Constructor
     public Star()
     {
         x = jv.random(-jv.width / 8, jv.width / 8);
         y = jv.random(jv.height * 0.01f, jv.height * 0.1f);
         z = jv.random(jv.width);
-    }
+    } // end Star()
+
 
     public void update()
     {
@@ -34,16 +36,17 @@ public class Star
                 x = jv.random(-jv.width / 8, jv.width / 8);
                 y = jv.random(jv.height * 0.01f, jv.height * 0.1f);
                 pz = z;
-            }
+            } // end inner if 
 
             sx = JinasVisual.map(x / z, 0, 1, 0, jv.width);
             sy = JinasVisual.map(y / z, 0, 1, 0, jv.height);
 
             px = JinasVisual.map(x / pz, 0, 1, 0, jv.width);
             py = JinasVisual.map(y / pz, 0, 1, 0, jv.height);
-        }
-    }
+        } // end outer if 
+    } // end update()
 
+    
     public void show() // SHows the colourful light lines 
     {
         if (cc >= 255) cc = 0;

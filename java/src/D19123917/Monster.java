@@ -29,7 +29,7 @@ public class Monster
         this.h = w * 0.1f;
         this.ws = w * 0.6f;
         this.stays = stays;
-    }
+    } // end Constructor
 
 
     public void update()
@@ -40,21 +40,21 @@ public class Monster
 
             if((jv.frameCount % 4) == 0)
             {
-                i += 0.2f; //i++;
-                //JinasVisual.println("VALUE " + i); 
-            }
-        }
+                i += 0.2f;
+            } // end inner if
+        } // end outer if 
 
         if(!stays)
         {
-            counter++;
+            counter++; // Increment the counter
 
             if(counter>= 10000)
             {
-                jv.m.remove(this);
-            }
-        }
-    }
+                jv.m.remove(this); // Remove mini Elmos
+            } // end inner if
+        } //end outer if
+    } // end update()
+
     
     public void render() // Draw elmo
     {
@@ -109,9 +109,10 @@ public class Monster
 
         jv.fill(0); // Mouth
         jv.arc(x, y - (w * 0.06f), (int)((ws * 0.83) + (jv.la * w)), (int)((ws * 0.73) + (jv.la * w)), 0, JinasVisual.PI); 
-    }
+    } // end render()
 
-    
+
+    // Getters and setters
     public float getX() {
         return x;
     }
