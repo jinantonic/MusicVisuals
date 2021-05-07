@@ -11,9 +11,13 @@ public class Monster
     float ws; // width scale
     float i = 0;
     float cc;
+
     Boolean stays;
+
     int counter;
 
+
+    // Constructor
     public Monster(JinasVisual jv, float x, float y, float c, float s, boolean stays)
     {
         this.jv = jv;
@@ -26,6 +30,7 @@ public class Monster
         this.ws = w * 0.6f;
         this.stays = stays;
     }
+
 
     public void update()
     {
@@ -43,6 +48,7 @@ public class Monster
         if(!stays)
         {
             counter++;
+
             if(counter>= 10000)
             {
                 jv.m.remove(this);
@@ -50,7 +56,7 @@ public class Monster
         }
     }
     
-    public void render()
+    public void render() // Draw elmo
     {
         if (cc >= 255) cc = 0;
         else cc++;
@@ -105,6 +111,7 @@ public class Monster
         jv.arc(x, y - (w * 0.06f), (int)((ws * 0.83) + (jv.la * w)), (int)((ws * 0.73) + (jv.la * w)), 0, JinasVisual.PI); 
     }
 
+    
     public float getX() {
         return x;
     }

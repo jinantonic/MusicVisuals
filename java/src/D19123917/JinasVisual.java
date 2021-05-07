@@ -2,14 +2,12 @@ package D19123917;
 
 import java.util.ArrayList;
 import ie.tudublin.*;
-import processing.core.PImage;
 
 
 public class JinasVisual extends Visual
 {
     Star [] stars = new Star[50]; // Create an array named stars
-    PImage [] images = new PImage[7];
-    ArrayList<Monster> m = new ArrayList<Monster>();
+    ArrayList<Monster> m = new ArrayList<Monster>(); // Create an arraylist of a monster
     Monster monster;
 
     float average;
@@ -24,10 +22,7 @@ public class JinasVisual extends Visual
     int w = 2000;
     int h = 1600;
 
-    float flying = 0;
-    float[][] terrain;
-
-
+    
     public void settings()
     {
         size(800, 800, P3D);
@@ -39,10 +34,6 @@ public class JinasVisual extends Visual
         {
             stars[i] = new Star(this);
         }
-
-        cols = w / scl;
-        rows = h/ scl;
-        terrain = new float[cols][rows];
     }   
 
     public void setup()
@@ -50,34 +41,29 @@ public class JinasVisual extends Visual
         startMinim();
         surface.setResizable(true);
         loadAudio("Dare.mp3");
-        getAudioPlayer().play();
+        getAudioPlayer().play(); 
         colorMode(HSB, 100);
 
-        monster = new Monster(this, hw, hh + 50, c, 0.5f, true);
+        monster = new Monster(this, hw, hh - hh * 0.1f, c, 0.5f, true);
         m.add(monster);
 
-        monster= new Monster(this, 100, hh - 40, c, 0.4f, true);
+        monster= new Monster(this, hw / 4, hh - hh / 3, c, 0.4f, true);
         m.add(monster);    
         
-        monster= new Monster(this, 650, hh - 50, c, 0.3f, true);
+        monster= new Monster(this, width - hw / 3, hh - hh * 0.4f, c, 0.3f, true);
         m.add(monster); 
-
-        images[0] = loadImage("1.png");
-        images[1] = loadImage("2.png");
-        images[2] = loadImage("3.png");
-        images[3] = loadImage("4.png");
-        images[4] = loadImage("5.png");
-        images[5] = loadImage("6.png");
     }
+
 
     public void spawnMonster()
     {
         if(! paused)
         {
             float ran = random(1, width);
-            monster = new Monster(this, ran, height - (hh / 2), c, 0.3f, false);
+            float run = random(hh + hh * 0.5f, height);
+            monster = new Monster(this, ran, run, c, 0.2f, false);
             m.add(monster);
-            frameRate(20);
+            frameRate(40);
         }
     }
 
@@ -90,6 +76,7 @@ public class JinasVisual extends Visual
         {
             which = keyCode - '0';
         }
+
         if(keyCode == ' ') // If i push the space bar 
         {
             if(getAp().isPlaying()) // If audioplayer is already playing
@@ -99,7 +86,7 @@ public class JinasVisual extends Visual
             }
             else
             {
-                getAp().rewind(); // Rewind
+                //getAp().rewind(); // Rewind
                 getAp().play(); // Play 
                 paused = false;
             }
@@ -127,26 +114,17 @@ public class JinasVisual extends Visual
             {
                 background(0);
                 speed = 10;
-
-                //float c = map(average, 0, 1, 0, 255);
                 
+                // Draw the disco ball
                 float c2 = map(la, 0, 0.5f, 0, 255);
                 fill(255, 0, 25 + c2);
                 ellipse(width / 2, 0, 250, 200);
-                
-                //println(" " + average);
+
+                // Draw spotlights
                 if(average * 1000 > 50)
                 {
                     triangle(hw, 0, hw - 200, height, hw + 200, height);
-
-                    //triangle(hw, 0, -w, h, w, h);
-
-                    //spawnMonster();
                 }
-                /*else if(average * 1000 > 60)
-                {
-                    //triangle(hw, 0, width, height, width, hh / 2);
-                }*/
                 else
                 {
                     triangle(hw, 0, 0, hh / 2, 0, height);
@@ -168,7 +146,6 @@ public class JinasVisual extends Visual
 
                 
                 // Draw elmo
-                //translate(-width/2, 0);
                 for(int i = 0; i < m.size(); i++)
                 {
                     Monster mo = m.get(i);
@@ -176,63 +153,21 @@ public class JinasVisual extends Visual
                     mo.update();
                 }
 
-                if(la * 100 > 18 && la * 100 < 20)
+                if(la * 100 > 19 && la * 100 < 20)
                 {
                     spawnMonster();
                 }
-
-                /*if(average * 1000 > 70 && average * 1000 < 80)
-                {
-                    spawnMonster();
-                }*/
 
                 break;
             }
             case 1:
             {
-                flying -= 0.1;
-
-                float yoff = flying;
-                for (int y = 0; y < rows; y++)
-                {
-                    float xoff = 0;
-                    for (int x = 0; x < cols; x++)
-                    {
-                        terrain[x][y] = map(noise(xoff, yoff), 0, 1, -100, 100);
-                        xoff += 0.2;
-                    }
-                    yoff += 0.2;
-                }
-
-                background(0);
-                stroke(255);
-                noFill();
               
-                translate(width/2, height/2+50);
-                rotateX(PI/3);
-                translate(-w/2, -h/2);
-                for (int y = 0; y < rows-1; y++)
-                {
-                     beginShape(TRIANGLE_STRIP);
-                    for (int x = 0; x < cols; x++)
-                    {
-                        vertex(x*scl, y*scl, terrain[x][y]);
-                        vertex(x*scl, (y+1)*scl, terrain[x][y+1]);
-                        //rect(x*scl, y*scl, scl, scl);
-                    }
-                  endShape();
-                }
-                break;
 
             }
             case 2:
             {
-                int s = mouseX / 5 + 1;
-                frameRate(s);
-                background(255);
-                int imageNum = frameCount % 6;
-                //translate(hw, hh);
-                image(images[imageNum], 0, 0);
+                
                 
                 break;
             }

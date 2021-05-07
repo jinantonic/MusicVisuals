@@ -8,10 +8,12 @@ public class Star
     float sx, sy, px, py;
     float cc;
 
+
     public Star(JinasVisual jv)
     {
         this.jv = jv;
     }
+
 
     public Star()
     {
@@ -42,7 +44,7 @@ public class Star
         }
     }
 
-    public void show()
+    public void show() // SHows the colourful light lines 
     {
         if (cc >= 255) cc = 0;
         else cc++;
@@ -50,7 +52,6 @@ public class Star
         jv.strokeWeight(2);
         jv.stroke(cc, 100, 255);
         jv.line(px, py, sx, sy);
-        
     }
 
 }
