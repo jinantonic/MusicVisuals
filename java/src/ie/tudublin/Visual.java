@@ -140,6 +140,7 @@ public abstract class Visual extends PApplet
 		return ap;
 	}
 
+<<<<<<< HEAD
 	public AudioInput getAi() {
 		return ai;
 	}
@@ -171,4 +172,9 @@ public abstract class Visual extends PApplet
 	public void setFft(FFT fft) {
 		this.fft = fft;
 	}
+=======
+	public FFT getFFT() {
+		return fft;
+	}
+>>>>>>> e046dab1e2b251637c1ad34172fa1ad88182298f
 }

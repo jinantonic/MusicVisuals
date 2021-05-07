@@ -8,8 +8,10 @@ public class JinasVisual extends Visual
 {
     
     Star [] stars = new Star[50]; // Create an array named stars, which will be filled with 50 elements made from Star class
+    
     ArrayList<Monster> m = new ArrayList<Monster>(); // Create an arraylist of a monster
-    Monster monster;
+    
+    Monster monster; // Moster object
 
     float average;
     float hh, hw;
