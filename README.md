@@ -39,7 +39,7 @@ It was a challenge since I am not familiar with the java language and my coding 
 - Visualising the Elmo using java processing
 - Unique visual of the program
 - Simple and not hardcoded project
-- The rainbow HSB colour shades using a simple if statement
+- The rainbow HSB colour shades using two lines of if-else statement
 - Usage of the lerped average of the song to calculate the timing of mini Elmos appearing
 - Inspection of the average value to control the spotlight timing 
 
