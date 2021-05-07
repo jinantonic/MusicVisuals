@@ -1,6 +1,6 @@
 # Music Visuals Project
-Name : Jina Park
-Student Number : D19123917
+- Name : Jina Park
+- Student Number : D19123917
 
 
 
