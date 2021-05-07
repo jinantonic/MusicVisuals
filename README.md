@@ -14,7 +14,7 @@ This project is consist of 4 classes which are Main, JinasVisual, Star and  Mons
 
 # How it works
 When you are partying, nothing boosts up the vibe more than the disco ball light. Star class contains constructors and 2 methods called update() and show() which calculate the star points using the map function and draw it. 
-Now the disco ball and the light are ready, it is time to bring the dancers to the stage. Monster class is created to form the figure and it is efficient to have it as a separate class so that multiple Elmos can be created easily. 
+Now the disco ball and the light are ready, it is time to bring the dancers to the stage. Monster class is created to form the figure and it is efficient to have it as a separate class so that multiple Elmos can be created easily and quickly. Monster class has the constructor, update(), render(), getters and setters. Through updat
 
 The song named DARE by Gorillaz is chosen which helped to get through the hard time this year, so that this could remind me of .
 # What I am most proud of in the assignment
