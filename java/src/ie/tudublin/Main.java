@@ -17,4 +17,5 @@ public class Main
 		Main main = new Main();   
 		main.startUI();	
 	} // end main()
-} // end main
+	
+} // end Main

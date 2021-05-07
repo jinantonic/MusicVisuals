@@ -49,12 +49,12 @@ public class Star
     
     public void show() // SHows the colourful light lines 
     {
+        // Calculate cc for the rainbow shades
         if (cc >= 255) cc = 0;
         else cc++;
 
         jv.strokeWeight(2);
         jv.stroke(cc, 100, 255);
         jv.line(px, py, sx, sy);
-    }
-
-}
+    } // end show()
+} // end Star

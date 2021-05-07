@@ -7,8 +7,8 @@ public class Monster
     float x, y;
     float c;
     float w, h;
-    float s; // scale
-    float ws; // width scale
+    float s; // Scale
+    float ws; // Width scale
     float i = 0;
     float cc;
 
@@ -58,6 +58,7 @@ public class Monster
     
     public void render() // Draw elmo
     {
+        // Calculate cc for the rainbow shades
         if (cc >= 255) cc = 0;
         else cc++;
         
@@ -66,7 +67,7 @@ public class Monster
         jv.rectMode(JinasVisual.CORNER);
 
         jv.pushMatrix(); // Left arm
-        jv.fill(cc, 255, 255); //jv.fill(255, c, 0);
+        jv.fill(cc, 255, 255);
         jv.translate(x - x / 25, y + (w * 0.4f));
         jv.rotate(i);
         jv.rect(0, 0, (ws * 1.1f) + (jv.la * w), ((ws * 0.23f) + (jv.la * w)), 50);
@@ -149,4 +150,4 @@ public class Monster
     public void setS(float s) {
         this.s = s;
     }
-}
+} // end Monster
