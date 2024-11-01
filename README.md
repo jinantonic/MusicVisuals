@@ -1,4 +1,4 @@
-# Music Visuals Project
+# Music Visuals Project (Java Processing)
 It has been over a year since the pandemic hit the whole world and here we are still living our lives, wasting our youth. Even though it has been such a devastating experience, as a Korean poet Sang-Wha Lee said, Spring comes to the lost land. This assignment represents the eagerness for the joy that we used to appreciate, and the hope that we soon will be able to reunite with it. Since I am a huge music fan who barely turns off the music, I wanted to create an art piece that reacts to the music, so that it could enlighten my time while listening to the tunes. My all-time favourite character is Elmo, so he was chosen as the main actor in the program. He starts dancing with his two friends and as time goes by, mini Elmos are generated vibing together.
 
 # Instructions
